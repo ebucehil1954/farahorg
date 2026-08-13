@@ -1,36 +1,9 @@
 import Image from 'next/image'
-import { Reveal } from '@/components/reveal'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
-const categories = [
-  {
-    title: 'Düğün',
-    script: 'Sonsuza Dair',
-    image: '/images/raw/img-4.jpeg',
-    alt: 'Kapadokya peri bacaları önünde çiçekli sütunlar ve beyaz koltukla hazırlanan boho düğün seremonisi alanı',
-    text: 'Zeytinliklerde, kanyonlarda ya da bağ evlerinde; mekân tasarımından nikâh kürsüsüne tüm seremoni kurgusu.',
-  },
-  {
-    title: 'Nişan',
-    script: 'İlk Söz',
-    image: '/images/raw/img-1.jpeg',
-    alt: 'Beyaz kağıt çiçekler ve neon ışıkla süslenmiş yuvarlak arka planlı modern nişan masası dekorasyonu',
-    text: 'Ev sıcaklığında ya da butik mekânlarda; hikâyenizi fısıldayan samimi ve incelikli nişan davetleri.',
-  },
-  {
-    title: 'Kına',
-    script: 'Geleneğin Işığı',
-    image: '/images/raw/img-21.jpeg',
-    alt: 'Kırmızı kadife taht, kırmızı güllerden kemer ve kına gecesi neon yazısı ile hazırlanmış kına köşesi',
-    text: 'Kırmızı kadife tahtlar, el yapımı bakır tepsiler ve loş mum ışığıyla yeniden yorumlanmış kına gecesi tasarımları.',
-  },
-  {
-    title: 'Özel Davetler',
-    script: 'Eşsiz Anlar',
-    image: '/images/raw/img-19.jpeg',
-    alt: 'Tavandan sarkan yeşil yosunlar ve çiçeklerle donatılmış ahşap çardak altında lüks yemek masası kurgusu',
-    text: 'Doğum günleri, bridal shower partileri ve kurumsal gala yemekleri için tematik masa ve mekân enstalasyonları.',
-  },
-]
+import { SERVICE_CATEGORIES } from '@/lib/services-data'
+import { Reveal } from '@/components/reveal'
 
 export function Categories() {
   return (
@@ -38,7 +11,7 @@ export function Categories() {
       <div className="mx-auto max-w-7xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-muted-foreground text-[0.62rem] tracking-[0.42em] uppercase">
-            Hizmetlerimiz
+            Hizmet Kategorilerimiz
           </p>
           <h2 className="mt-5 font-serif text-3xl leading-[1.2] text-balance sm:text-4xl md:text-[2.75rem]">
             Her tören için
@@ -51,52 +24,64 @@ export function Categories() {
           />
         </Reveal>
 
-        <ul className="mt-16 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((c, i) => (
-            <Reveal
-              as="li"
-              key={c.title}
-              delay={i * 130}
-              className={`group ${
-                i === 3 ? 'lg:col-start-2' : ''
-              }`}
-            >
-              <article>
-                <div className="arch bg-muted relative aspect-3/4 overflow-hidden">
-                  <Image
-                    src={c.image}
-                    alt={c.alt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 92vw"
-                    className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-[oklch(0.25_0.04_39)]/55 via-transparent to-transparent"
-                  />
-                  <span className="font-script text-champagne absolute inset-x-0 bottom-6 text-center text-xl italic">
-                    {c.script}
-                  </span>
+        <ul className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICE_CATEGORIES.map((c, i) => (
+            <Reveal as="li" key={c.slug} delay={i * 100} className="group">
+              <article className="flex flex-col h-full justify-between bg-card border border-border/70 rounded-3xl p-4 shadow-sm hover:shadow-lg transition-all duration-300">
+                <div>
+                  <div className="arch bg-muted relative aspect-3/4 overflow-hidden shadow-md">
+                    <Image
+                      src={c.heroImage}
+                      alt={c.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw"
+                      className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-[oklch(0.25_0.04_39)]/60 via-transparent to-transparent"
+                    />
+                    <span className="font-script text-champagne absolute inset-x-0 bottom-6 text-center text-xl italic">
+                      {c.script}
+                    </span>
+                    <span className="absolute top-3 right-3 bg-black/60 text-champagne text-[0.62rem] uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-sm">
+                      ₺{c.priceStartingFrom.toLocaleString('tr-TR')}'den
+                    </span>
+                  </div>
+
+                  <div className="px-2 pt-6 text-center">
+                    <h3 className="font-serif text-[1.4rem] tracking-wide">
+                      {c.title}
+                    </h3>
+                    <p className="text-muted-foreground mx-auto mt-2.5 max-w-xs text-xs leading-relaxed text-pretty line-clamp-3">
+                      {c.shortDescription}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="px-2 pt-7 text-center">
-                  <h3 className="font-serif text-[1.6rem] tracking-wide">
-                    {c.title}
-                  </h3>
-                  <p className="text-muted-foreground mx-auto mt-3.5 max-w-xs text-[0.92rem] leading-relaxed text-pretty">
-                    {c.text}
-                  </p>
-                  <a
-                    href="#iletisim"
-                    className="text-foreground/70 hover:text-olive mt-6 inline-block border-b border-current pb-1 text-[0.66rem] tracking-[0.22em] uppercase transition-colors duration-300"
+                <div className="pt-6 text-center">
+                  <Link
+                    href={`/hizmetler/${c.slug}`}
+                    className="text-foreground/80 hover:text-olive inline-flex items-center gap-2 border-b border-current pb-1 text-[0.68rem] tracking-[0.2em] uppercase transition-colors duration-300 font-medium"
                   >
-                    Detaylı Bilgi
-                  </a>
+                    <span>Paket & Dahil Olanlar</span>
+                    <ArrowRight className="size-3.5" />
+                  </Link>
                 </div>
               </article>
             </Reveal>
           ))}
         </ul>
+
+        <Reveal className="mt-16 text-center">
+          <Link
+            href="/hizmetler"
+            className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-3 rounded-full px-10 py-4 text-[0.68rem] tracking-[0.24em] uppercase transition-colors duration-300 shadow-md"
+          >
+            <span>Tüm Paket Listesini ve Şeffaf İçerikleri İnceleyin</span>
+            <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   )

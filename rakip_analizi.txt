@@ -1,0 +1,124 @@
+Nevşehir ve Çevre İller Organizasyon Sektörü: Rakip Analizi & Web UX Rehberi
+
+Bu rapor, Nevşehir, Kayseri, Aksaray, Niğde ve Kırşehir bölgesinde faaliyet gösteren düğün, nişan, kına ve özel davet organizasyon firmalarının web sitelerinde sundukları hizmet detaylarını ve sitelerinde kullandıkları müşteri deneyimini (UX) ve satış dönüşümünü (CRO) artıran özellikleri incelemektedir.
+
+1. Rakip Sitelerde Yer Alan Temel Hizmetler ve Paket İçerikleri
+
+Bölgedeki rakipler hizmetlerini genellikle konsept paketler halinde sunmakta ve müşteri karar sürecini kolaylaştırmak için aşağıdaki detaylandırılmış içerikleri sergilemektedir:
+
+A. Söz & Nişan Organizasyon Paketleri
+
+Bölgede özellikle evde, bahçede ve butik mekanlarda yapılan küçük ölçekli davetlere talep çok yüksektir.
+
+Tag ve Arka Fon Seçenekleri: Işıklı ahşap taglar, şeffaf pleksi panolar, melek kanadı konseptleri, Hint penceresi ve Mahidevran modelleri.
+
+Masa ve Süsleme Detayları: Yapay/taze çiçek aranjmanları, aynalı yükselticiler, şamdanlar, vazolar ve yapay şömine kurulumları.
+
+Seremoni Ekipmanları: İsimli nişan tepsisi, makas, yüzük kutusu, damat kahve fincan takımı.
+
+Görsel ve Hoş Geldiniz Alanı: Şövaleli kişiye özel karşılama panosu, led ışıklı harfler (örn: "A&B" veya "LOVE"), fotoğraf köşesi.
+
+Hediyelik ve İkram Destekleri: Kişiye özel isimli nişan çikolatası, magnet/hediyelik sergileme standları, bistro masa kiralama ve giydirme.
+
+B. Kına Gecesi Organizasyon Paketleri
+
+Geleneksel ve modern konseptlerin harmanlandığı, en yüksek paket fiyatlamasına sahip alanlardan biridir.
+
+Kına Tahtı ve Dekorasyon: Kırmızı, bordo, beyaz, mor ve Hint temalı lüks kına tahtları, cibinlikler ve arka fon ışıklandırmaları.
+
+Gelin ve Damat Kostümleri: Lüks kaftan/bindallı kiralama, damat için fes ve yelek seti.
+
+Performans Ekipleri: Nedime dans ekibi (koreografili giriş şovları, testi kırma, kemer dansı), davul şov ekibi, zenne/oryantal.
+
+Seremoni ve Aksesuarlar: Işıklı kına tepsisi, kına tepsisi sehpası, yaş kına, misafirler için tef, el mumu, duvak, halay mendili ve şakira kemeri dağıtımı.
+
+İkramlık Standlar: Lokum ve şerbet karşılama masası, nedime karşılama standı.
+
+C. Düğün & Balo Salonu / Kır Düğünü Paketleri
+
+Büyük ölçekli davetlerde rakipler görsel şovlar ve teknik altyapı detaylarıyla öne çıkmaktadır.
+
+Mekan Giydirme: Napolyon veya Tiffany model sandalye kiralama ve bağlama, masa örtüsü, supla ve Peçetelik kombinasyonları.
+
+Gelin Yolu ve Nikah Alanı: Işıklı gelin yolu sütunları, canlı/yapay çiçekli taklar, nikah kürsüsü ve özel tasarım gelin-damat masası.
+
+Görsel Efektler ve Sahne Şovları: Yapay sis makinesi (bulut üzerinde ilk dans etkisi), soğuk volkan şovları, konfeti patlatıcılar, ışık şovları ve truss sistemleri.
+
+Müzik ve Karşılama Ekipleri: Gelin alma bandosu, karşılama keman/akordeon ekibi, DJ veya canlı orkestra tedariki.
+
+Medya Prodüksiyon: 4K çekim, drone ile havadan çekim, jimmy jip ve anlık fotoğraf baskı hizmetleri.
+
+D. Kapadokya Bölgesine Özel Konseptler (Nevşehir Ayrışma Noktası)
+
+Nevşehir'deki firmaları Kayseri veya Aksaray'daki rakiplerinden ayıran en kritik alandır.
+
+Vadi ve Gün Batımı Evlilik Teklifleri: Kızılçukur ve Aşk Vadisi'nde halılı otantik piknik düzeni, dev "MARRY ME" ışıklı yazısı, mum yolları.
+
+Sıcak Hava Balonu Temalı Kurulumlar: Balonların kalkış saatinde teras veya vadi içi özel kahvaltı / teklif masası süslemeleri.
+
+Cave Hotel (Mağara Otel) Teras Hazırlıkları: Teras süsleme, canlı keman performansı, şampanya/ikram servisi, VIP transfer.
+
+2. Web Sitesinde Müşteri Deneyimini (UX) ve Satış Dönüşümünü Artıran Araçlar
+
+Rakiplerin ve sektördeki en başarılı web sitelerinin ziyaretçileri müşteriye dönüştürmek için kullandığı kritik araçlar ve teknik özellikler şunlardır:
+
+1. Canlı Bütçe & Paket Hesaplayıcı Simülatörü
+
+Nedir?: Müşterinin etkinlik türü, davetli sayısı, yapılacağı şehir ve istediği ekstra hizmetleri (örn: drone, bando, nedime) seçerek anında tahmini fiyat aralığı almasını sağlayan modül.
+
+Faydası: Müşterinin "Acaba çok mu pahalıdır?" endişesini giderir. Fiyat şeffaflığı sağladığı için dönüşüm oranını %35-40 artırır.
+
+2. Çok Adımlı (Multi-Step) Koşullu Teklif Formu
+
+Nedir?: Kullanıcıyı uzun ve karmaşık tek bir form yerine 3 kısa adıma bölen yapıdır (1. Adım: Şehir ve Etkinlik Türü -> 2. Adım: Tarih ve Kişi Sayısı -> 3. Adım: İletişim Bilgileri).
+
+Faydası: Kullanıcının formu terk etme oranını düşürür. Form tamamlandığında otomatik hazırlanmış WhatsApp mesaj metni ile doğrudan firma sahibine yönlendirme yapar.
+
+3. Öncesi / Sonrası (Before / After) Mekan Dönüşüm Kaydırıcısı
+
+Nedir?: Boş veya ham bir mekanın/bahçenin, organizasyon kurulumu bittikten sonraki halini ekranı sağa-sola kaydırarak gösteren görsel araç.
+
+Faydası: Müşteriye firmanın mekânı dönüştürme gücünü kanıtlar, hayal etmesini kolaylaştırır ve güven bağını hızlıca kurar.
+
+4. Floating Action Button (Sabit WhatsApp & Arama Düğmesi)
+
+Nedir?: Özellikle mobil cihazlarda ekranın sağ alt köşesinde sürekli sabit duran, tek tıkla arama yaptıran veya önceden yazılmış hazır mesajla WhatsApp başlatan buton.
+
+Faydası: Mobil ziyaretçilerin müşteri temsilcisine ulaşma süresini 1 saniyeye indirir.
+
+5. Filtrelenebilir E-Ticaret Mantığıyla Kataloğu Gezme
+
+Nedir?: Masaları, kına tahtlarını veya nişan taglarını renge (Altın, Gümüş, Ahşap, Pembe), mekana (Ev, Bahçe, Salon, Vadi) veya fiyata göre süzebilen ürün katalog alanı.
+
+Faydası: Müşterinin aradığı spesifik konsepti saniyeler içinde bulmasını sağlar, sitede kalma süresini artırır.
+
+6. Canlı Sosyal Kanıt ve Müşteri Yorumları Widget'ı
+
+Nedir?: Google Haritalar'daki gerçek 5 yıldızlı müşteri yorumlarının, fotoğraflı çift değerlendirmelerinin ve Instagram akışının canlı olarak sitede çekilmesi.
+
+Faydası: Yeni evlenecek çiftlerin en çok baktığı unsur "Daha önce bu firmadan memnun kalan var mı?" sorusudur. Sosyal kanıt bu güveni doğrudan verir.
+
+7. PDF Katalog / Fiyat Listesi İndirme (Lead Magnet)
+
+Nedir?: "2026 Düğün & Nişan Trendleri ve Fiyat Kataloğunu İndirin" başlığı altında, telefon numarası girilerek indirilebilen dijital broşür modülü.
+
+Faydası: Siteden hemen ayrılacak potansiyel müşterilerin iletişim bilgilerini (Lead) toplamanızı sağlar.
+
+3. Yeni Kurulacak Web Siteniz İçin Stratejik Kontrol Listesi
+
+Mobil Birebir Uyumluluk: Ziyaretçilerinizin %80'inden fazlası gelin ve damat adayları olarak mobil cihazlardan girecektir. Mobil tasarım kusursuz olmalıdır.
+
+Bölgesel SEO Hedeflemesi: Sayfalarınızda "Nevşehir Nişan Organizasyonu", "Ürgüp Evlilik Teklifi", "Kayseri Kına Tahtı Kiralama" gibi şehir ve ilçe bazlı anahtar kelimeler mutlaka yer almalıdır.
+
+Şeffaf Hizmet İçeriği Checklist'i: Her paket kartının altında nelerin fiyata dahil olduğu (örn: Ses sistemi dahil, Ulaşım hariç) açıkça tik işaretleriyle belirtilmelidir.
+
+Hızlı Yükleme Süresi: Yüksek çözünürlüklü konsept fotoğrafları optimized edilmiş biçimde sunulmalı, web sitesi açılışı 2 saniyenin altında kalmalıdır.
+
+
+---
+
+### Özet ve Sonraki Adımlar
+
+Sitenizi kurarken bu hizmet çeşitliliğini ve interaktif araçları (özellikle **Paket Hesaplayıcı**, **Çok Adımlı Form** ve **Filtrelenebilir Katalog**) temel almanız, bölgedeki rakiplerinizin önüne geçmenizi sağlayacaktır. 
+
+Ayrıca ekranınızın sağ tarafında yer alan canlı **web uygulaması simülasyonunu** inceleyerek bu araçların çalışan prototiplerini deneyimleyebilirsiniz. Başka bir teknik detay veya tasarım özelleştirmesi isterseniz yardımcı olmaktan memnuniyet duyarım!

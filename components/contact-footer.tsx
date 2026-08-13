@@ -20,7 +20,7 @@ export function ContactFooter() {
           {/* Left: invitation + details */}
           <Reveal>
             <p className="text-terracotta-foreground/60 text-[0.62rem] tracking-[0.42em] uppercase">
-              İletişim
+              Nevşehir & Kapadokya Ofisi
             </p>
             <h2 className="mt-5 font-serif text-3xl leading-[1.18] text-balance sm:text-4xl md:text-[2.9rem]">
               Hikâyenizi
@@ -29,25 +29,24 @@ export function ContactFooter() {
               </span>
             </h2>
             <p className="text-terracotta-foreground/70 mt-6 max-w-md text-[0.95rem] leading-relaxed text-pretty">
-              Formu doldurun ya da doğrudan bize yazın. 48 saat içinde
-              dönüş yapıyoruz.
+              Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir bölgesi için randevu alın veya WhatsApp üzerinden anında ulaşın.
             </p>
 
             <ul className="mt-12 space-y-5">
               {[
                 {
                   icon: Phone,
-                  text: '+90 232 000 00 00',
-                  href: 'tel:+902320000000',
+                  text: '+90 530 000 00 00',
+                  href: 'tel:+905300000000',
                 },
                 {
                   icon: Mail,
-                  text: 'merhaba@farahorganizasyon.com',
-                  href: 'mailto:merhaba@farahorganizasyon.com',
+                  text: 'info@farahorganizasyon.com',
+                  href: 'mailto:info@farahorganizasyon.com',
                 },
                 {
                   icon: MapPin,
-                  text: 'Alsancak, İzmir — randevu ile',
+                  text: 'Güzelyurt Mah. Nevşehir / Ürgüp — Randevu ile',
                   href: null,
                 },
               ].map((c) => (
@@ -74,13 +73,13 @@ export function ContactFooter() {
             </ul>
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/farah.organizasyon"
               target="_blank"
               rel="noopener noreferrer"
               className="border-terracotta-foreground/30 hover:bg-terracotta-foreground/10 mt-12 inline-flex items-center gap-3 rounded-full border px-6 py-3 text-[0.66rem] tracking-[0.2em] uppercase transition-colors duration-300"
             >
               <InstagramIcon className="size-4" />
-              Instagram
+              @farah.organizasyon
             </a>
           </Reveal>
 
@@ -110,7 +109,7 @@ export function ContactFooter() {
                   htmlFor="message"
                   className="text-terracotta-foreground/60 block text-[0.62rem] tracking-[0.24em] uppercase"
                 >
-                  Davetinizden Bahsedin
+                  Davetiniz veya Bölge Tercihinizden Bahsedin
                 </label>
                 <textarea
                   id="message"
@@ -143,8 +142,7 @@ export function ContactFooter() {
             </span>
           </a>
           <p className="text-terracotta-foreground/50 text-[0.66rem] tracking-[0.16em] uppercase">
-            © {new Date().getFullYear()} Farah Organizasyon — Tüm hakları
-            saklıdır
+            © {new Date().getFullYear()} Farah Organizasyon — Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde
           </p>
         </div>
       </div>

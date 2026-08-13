@@ -23,22 +23,24 @@ const cormorant = Cormorant_Upright({
 })
 
 export const metadata: Metadata = {
-  title: 'Farah Organizasyon | Düğün & Özel Davet Tasarımı',
+  title: 'Nevşehir & Kapadokya Düğün, Nişan, Kına Organizasyonu | Farah Organizasyon',
   description:
-    'Hayallerinizi doğanın zarafetiyle buluşturuyoruz. Düğün, nişan, kına ve özel davetler için butik organizasyon ve tasarım hizmeti.',
+    'Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir bölgesi için lüks nişan masaları, kına tahtları, kır düğünleri ve vadide evlilik teklifi organizasyon hizmeti.',
   generator: 'v0.app',
   keywords: [
-    'düğün organizasyonu',
-    'kır düğünü',
-    'nişan organizasyonu',
-    'kına gecesi',
-    'boho düğün',
+    'Nevşehir Düğün Organizasyonu',
+    'Kapadokya Evlilik Teklifi',
+    'Ürgüp Kına Tahtı Kiralama',
+    'Kayseri Nişan Masası',
+    'Aksaray Kır Düğünü',
+    'Niğde Organizasyon Firmaları',
+    'Göreme Mağara Otel Teras Süsleme',
     'Farah Organizasyon',
   ],
   openGraph: {
-    title: 'Farah Organizasyon | Düğün & Özel Davet Tasarımı',
+    title: 'Nevşehir & Kapadokya Düğün, Nişan, Kına | Farah Organizasyon',
     description:
-      'Hayallerinizi doğanın zarafetiyle buluşturuyoruz. Butik organizasyon ve tasarım.',
+      'Nevşehir ve Kapadokya bölgesinin lider düğün, kına ve nişan organizasyon firması. Canlı paket fiyat simülatörü ve şeffaf paket içerikleri.',
     type: 'website',
     locale: 'tr_TR',
   },
@@ -79,22 +81,10 @@ export default function RootLayout({
   // Auto-run image copying and metadata extraction on render
   try {
     const rootPath = process.cwd()
-    
-    // Cleanup temporary files once processed
-    const tempPage = path.join(rootPath, 'app', 'gallery', 'page.tsx')
-    if (fs.existsSync(tempPage)) {
-      fs.unlinkSync(tempPage)
-    }
-    const debugLog = path.join(rootPath, 'public', 'cwd-contents.json')
-    if (fs.existsSync(debugLog)) {
-      fs.unlinkSync(debugLog)
-    }
-
     const srcDir = path.join(rootPath, 'görseller')
     const rootImagesPath = path.join(rootPath, 'images')
     const destDir = path.join(rootPath, 'public', 'images', 'raw')
     
-    // Check which directory exists and use it
     let srcDirResolved = srcDir
     if (!fs.existsSync(srcDirResolved) && fs.existsSync(rootImagesPath)) {
       srcDirResolved = rootImagesPath
@@ -112,7 +102,6 @@ export default function RootLayout({
       
       const metadataList: any[] = []
       
-      // Helper to extract JPEG dimensions by parsing markers
       const getJpegSize = (filePath: string) => {
         try {
           const buffer = fs.readFileSync(filePath)
@@ -149,7 +138,6 @@ export default function RootLayout({
         const srcPath = path.join(srcDirResolved, file)
         const destPath = path.join(destDir, newName)
         
-        // Copy if not already copied or if sizes differ
         const srcStat = fs.statSync(srcPath)
         let shouldCopy = true
         if (fs.existsSync(destPath)) {

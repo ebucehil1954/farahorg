@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { Calculator, Sparkles, MessageCircle } from 'lucide-react'
 
 export function Hero() {
   return (
@@ -8,7 +9,7 @@ export function Hero() {
     >
       <Image
         src="/images/raw/img-12.jpeg"
-        alt="Gün batımında zeytinlikler arasında kurulan, şemsiye şeklinde asılı çiçek lambaları ve mumlarla aydınlatılmış şık davet sofrası"
+        alt="Kapadokya vadisinde peri bacaları ve mumlar eşliğinde hazırlanan büyüleyici davet sofrası"
         fill
         priority
         sizes="100vw"
@@ -24,48 +25,52 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-b from-[oklch(0.2_0.03_46.5)]/70 via-transparent to-[oklch(0.2_0.03_46.5)]/60"
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-6 pt-24 pb-16 text-center">
-        <p className="text-champagne/80 animate-in fade-in slide-in-from-bottom-3 text-[0.62rem] tracking-[0.5em] uppercase duration-1000 sm:text-[0.7rem]">
-          Est. 2014 &nbsp;·&nbsp; Butik Davet Tasarımı
-        </p>
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pt-28 pb-16 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-champagne/10 px-4 py-1.5 text-[0.65rem] sm:text-xs text-champagne uppercase tracking-[0.3em] font-medium backdrop-blur-sm mb-4">
+          <Sparkles className="size-3.5" />
+          <span>Nevşehir · Kapadokya · Kayseri · Aksaray</span>
+        </div>
 
-        <span
-          aria-hidden="true"
-          className="via-champagne/50 animate-in fade-in mx-auto my-7 block h-px w-20 bg-gradient-to-r from-transparent to-transparent delay-200 duration-1000"
-        />
-
-        <h1 className="text-champagne animate-in fade-in slide-in-from-bottom-5 font-serif text-[2.1rem] leading-[1.18] font-normal tracking-tight text-balance delay-150 duration-1000 sm:text-5xl md:text-6xl">
+        <h1 className="text-champagne animate-in fade-in slide-in-from-bottom-5 font-serif text-[2.2rem] leading-[1.15] font-normal tracking-tight text-balance duration-1000 sm:text-5xl md:text-6xl">
           Hayallerinizi
           <span className="font-script mx-2.5 inline-block text-[1.05em] italic">
-            Doğanın Zarafetiyle
+            Kapadokya Büyüsüyle
           </span>
           Buluşturuyoruz
         </h1>
 
-        <p className="text-champagne/75 animate-in fade-in slide-in-from-bottom-4 mx-auto mt-7 max-w-lg text-sm leading-relaxed text-pretty delay-300 duration-1000 sm:text-base">
-          Kır düğünlerinden şehrin kalbindeki davetlere; her detayı sizin
-          hikâyeniz için elle kurguluyoruz.
+        <p className="text-champagne/80 animate-in fade-in slide-in-from-bottom-4 mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-pretty duration-1000 sm:text-base">
+          Düğün, kına gecesi, söz & nişan davetleri ve vadide evlilik teklifleri; Nevşehir ve çevre illerde her detayı sizin hikâyeniz için incelikle tasarlıyoruz.
         </p>
 
-        <div className="animate-in fade-in slide-in-from-bottom-4 mt-11 flex flex-col items-center justify-center gap-4 delay-500 duration-1000 sm:flex-row">
+        <div className="animate-in fade-in slide-in-from-bottom-4 mt-10 flex flex-col items-center justify-center gap-4 duration-1000 sm:flex-row">
           <a
-            href="#iletisim"
-            className="border-champagne/60 text-champagne hover:bg-champagne hover:text-foreground w-full rounded-full border px-9 py-3.5 text-[0.7rem] tracking-[0.24em] uppercase backdrop-blur-sm transition-all duration-500 sm:w-auto"
+            href="#hesaplayici"
+            className="bg-olive text-olive-foreground hover:bg-olive/90 border-olive w-full rounded-full border px-8 py-3.5 text-[0.7rem] tracking-[0.22em] uppercase font-medium shadow-lg transition-all duration-300 sm:w-auto inline-flex items-center justify-center gap-2"
           >
-            Görüşme Planla
+            <Calculator className="size-4" />
+            <span>Canlı Bütçe Hesapla</span>
           </a>
           <a
-            href="#portfolyo"
-            className="text-champagne/70 hover:text-champagne group text-[0.7rem] tracking-[0.24em] uppercase transition-colors duration-300"
+            href="#hizli-teklif"
+            className="border-champagne/60 text-champagne hover:bg-champagne hover:text-foreground w-full rounded-full border px-8 py-3.5 text-[0.7rem] tracking-[0.22em] uppercase backdrop-blur-sm transition-all duration-500 sm:w-auto inline-flex items-center justify-center gap-2"
           >
-            Portfolyoyu Gör
-            <span
-              aria-hidden="true"
-              className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1"
-            >
-              →
-            </span>
+            <MessageCircle className="size-4" />
+            <span>3 Adımda Fiyat Al</span>
           </a>
+        </div>
+
+        {/* Feature Pill Tags */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-champagne/70 text-[0.68rem] tracking-widest uppercase">
+          <span className="bg-black/30 border border-champagne/20 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+            ✓ Şeffaf Paket Fiyatları
+          </span>
+          <span className="bg-black/30 border border-champagne/20 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+            ✓ 3D Mekan Yerleşimi
+          </span>
+          <span className="bg-black/30 border border-champagne/20 px-3.5 py-1.5 rounded-full backdrop-blur-sm">
+            ✓ Anında WhatsApp İletişimi
+          </span>
         </div>
       </div>
 

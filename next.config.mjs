@@ -3,7 +3,10 @@ import path from 'path'
 
 // Auto-run image copying and metadata extraction on Next.js config initialization
 try {
-  const srcDir = path.join(process.cwd(), 'görseller')
+  let srcDir = path.join(process.cwd(), 'görseller')
+  if (!fs.existsSync(srcDir) && fs.existsSync(path.join(process.cwd(), 'images'))) {
+    srcDir = path.join(process.cwd(), 'images')
+  }
   const destDir = path.join(process.cwd(), 'public', 'images', 'raw')
   
   if (fs.existsSync(srcDir)) {
