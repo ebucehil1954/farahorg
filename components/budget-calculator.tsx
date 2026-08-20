@@ -1,25 +1,25 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Calculator, Check, MessageSquare, Sparkles, MapPin, Users, ChevronRight } from 'lucide-react'
+import { Check, MessageSquare, Sparkles, MapPin, Users, ChevronRight, Layers, Sliders, Calendar } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { cn } from '@/lib/utils'
 
 interface AddonOption {
   id: string
   name: string
-  price: number
   category: string
 }
 
 const ADDONS: AddonOption[] = [
-  { id: 'drone', name: '4K Drone Havadan Çekim & Video Klip', price: 4500, category: 'Medya' },
-  { id: 'bando', name: 'Gelin Alma Bandosu (5 Kişilik Ekip)', price: 6500, category: 'Müzik' },
-  { id: 'nedime', name: 'Ekstra Nedime Ekibi (+2 Dansçı)', price: 3500, category: 'Performans' },
-  { id: 'sis_volkan', name: 'Yapay Sis Bulutu & 4x Soğuk Volkan Şovu', price: 4000, category: 'Efekt' },
-  { id: 'vip_transfer', name: 'Kapadokya VIP Araç Transferi (Gidiş-Dönüş)', price: 3000, category: 'Lojistik' },
-  { id: 'somine', name: 'Yapay Şömine & Romantik Işık Kurulumu', price: 2500, category: 'Dekor' },
-  { id: 'keman', name: 'Canlı Keman Performansı (45 Dk)', price: 3500, category: 'Müzik' },
+  { id: 'dj_ses', name: 'DJ & Profesyonel Ses Sistemi', category: 'Müzik' },
+  { id: 'foto_video', name: 'Fotoğraf ve Video Çekimi', category: 'Medya' },
+  { id: 'sis_bulutu', name: 'Sis Bulutu Gösterisi', category: 'Efekt' },
+  { id: 'karsilama_pano', name: 'İsimli Karşılama Panosu & Şövale', category: 'Dekor' },
+  { id: 'masa_giydirme', name: 'Masa & Sandalye Giydirme / Süsleme', category: 'Düzen' },
+  { id: 'balon_kemer', name: 'Konsept Balon Kemeri / Giriş Süslemesi', category: 'Dekor' },
+  { id: 'kina_aksesuar', name: 'Kına Tepsisi, Def & Damat Örtüsü Seti', category: 'Seremoni' },
+  { id: 'ikram_masasi', name: 'Özel Pasta & İkram Sunum Masası', category: 'İkram' },
 ]
 
 const CITIES = [
@@ -32,17 +32,21 @@ const CITIES = [
 ]
 
 const EVENT_TYPES = [
-  { id: 'nisan', title: 'Söz & Nişan', basePrice: 12500, desc: 'Ev, bahçe veya salon nişan tagı & masası' },
-  { id: 'kina', title: 'Kına Gecesi', basePrice: 16500, desc: 'Lüks taht, kaftan, nedime dans ekibi & ikramlar' },
-  { id: 'dugun', title: 'Düğün & Kır Düğünü', basePrice: 24000, desc: 'Sandalye giydirme, gelin yolu, nikah takı & efektler' },
-  { id: 'kapadokya', title: 'Kapadokya Teklifi', basePrice: 9500, desc: 'Vadi pikniği, MARRY ME LED harf & balon manzarası' },
+  { id: 'dugun', title: 'Düğün Organizasyonu', desc: 'Gelin masası, gelin yolu, masa süsleme, DJ & ses' },
+  { id: 'kina', title: 'Kına Gecesi', desc: 'Kına tahtı, arka fon, gelin yolu, masa süsleme' },
+  { id: 'nisan', title: 'Söz & Nişan', desc: 'Söz/nişan fonu, sandalyeler, tepsi ve aksesuarlar' },
+  { id: 'bride-party', title: 'Bride Party', desc: 'Bride to Be fon, neon yazı, masa düzeni, parti seti' },
+  { id: 'dogum-gunu', title: 'Doğum Günü', desc: 'Balon kemeri, pasta masası, yaş/isim dekoru' },
+  { id: 'acilis', title: 'Açılış Organizasyonu', desc: 'Giriş balon süsleme, bistro masa, kurdele & makas' },
+  { id: 'masa-sandalye-kiralama', title: 'Masa Sandalye Kiralama', desc: 'Yuvarlak masa, bistro, Napolyon sandalye & nakliye' },
+  { id: 'ozel-gun-davet', title: 'Özel Gün & Davet', desc: 'Özel konsept tasarım, müzik, ikram & fotoğraf alanı' },
 ]
 
 export function BudgetCalculator() {
-  const [eventType, setEventType] = useState<string>('nisan')
-  const [guestCount, setGuestCount] = useState<number>(50)
+  const [eventType, setEventType] = useState<string>('dugun')
+  const [guestCount, setGuestCount] = useState<number>(100)
   const [city, setCity] = useState<string>('nevsehir')
-  const [selectedAddons, setSelectedAddons] = useState<string[]>(['drone'])
+  const [selectedAddons, setSelectedAddons] = useState<string[]>(['dj_ses', 'foto_video'])
 
   const selectedEvent = useMemo(
     () => EVENT_TYPES.find((e) => e.id === eventType) || EVENT_TYPES[0],
@@ -53,24 +57,6 @@ export function BudgetCalculator() {
     () => CITIES.find((c) => c.id === city) || CITIES[0],
     [city]
   )
-
-  const calculation = useMemo(() => {
-    let base = selectedEvent.basePrice
-    // Scale slightly with guest count over 50
-    if (guestCount > 50) {
-      base += (guestCount - 50) * 45
-    }
-    // Addon sum
-    const addonSum = selectedAddons.reduce((sum, addonId) => {
-      const addon = ADDONS.find((a) => a.id === addonId)
-      return sum + (addon ? addon.price : 0)
-    }, 0)
-
-    const totalMin = base + addonSum
-    const totalMax = Math.round(totalMin * 1.2)
-
-    return { totalMin, totalMax }
-  }, [selectedEvent, guestCount, selectedAddons])
 
   const toggleAddon = (id: string) => {
     setSelectedAddons((prev) =>
@@ -84,59 +70,66 @@ export function BudgetCalculator() {
       .filter(Boolean)
       .join(', ')
 
-    const text = `Merhaba Farah Organizasyon! Web sitenizdeki Canlı Bütçe Hesaplayıcı üzerinden teklif almak istiyorum:
-• Etkinlik Türü: ${selectedEvent.title}
-• Davetli Sayısı: ${guestCount} Kişi
+    const text = `Merhaba Farah Organizasyon! Web sitenizdeki Paket Planlayıcı üzerinden özel konsept talebi oluşturmak istiyorum:
+• Organizasyon Türü: ${selectedEvent.title}
+• Tahmini Davetli Sayısı: ${guestCount} Kişi
 • Lokasyon: ${selectedCityObj.name}
-• Seçilen Ekstralar: ${addonNames || 'Yok'}
-• Tahmini Bütçe Aralığım: ₺${calculation.totalMin.toLocaleString('tr-TR')} - ₺${calculation.totalMax.toLocaleString('tr-TR')}
+• Tercih Edilen Hizmet & Ekstralar: ${addonNames || 'Standart Paket'}
 
-Müsaitlik durumu ve net fiyat teklifi için bilgi alabilir miyim?`
+Tarih müsaitliği ve kişiye özel detaylı teklif alabilir miyim?`
 
     return `https://wa.me/905300000000?text=${encodeURIComponent(text)}`
-  }, [selectedEvent, guestCount, selectedCityObj, selectedAddons, calculation])
+  }, [selectedEvent, guestCount, selectedCityObj, selectedAddons])
 
   return (
     <section id="hesaplayici" className="px-5 py-24 sm:px-8 sm:py-32 bg-secondary/30 relative overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-1.5 text-xs text-olive uppercase tracking-widest font-medium mb-4">
-            <Calculator className="size-3.5" />
-            <span>Şeffaf Fiyatlandırma Simülatörü</span>
+            <Sliders className="size-3.5" />
+            <span>İnteraktif Paket Sihirbazı</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">
-            Canlı Bütçe & Paket Hesaplayıcı
+            Etkinlik & Paket Planlayıcı
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Hayalinizdeki organizasyonun detaylarını seçin, anında tahmini bütçe aralığınızı hesaplayın ve WhatsApp ile tek tıkla onay alın.
+            Hayalinizdeki organizasyonun türünü, davetli sayısını ve talep ettiğiniz özellikleri seçin; size özel teklif özetinizi anında WhatsApp ile bize iletin.
           </p>
         </Reveal>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-12 items-start">
-          {/* Interactive Form Controls */}
+          {/* Interactive Controls */}
           <Reveal className="lg:col-span-7 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-sm">
             {/* Step 1: Event Type */}
             <div>
-              <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium block mb-3">
-                1. Etkinlik Türünü Seçin
+              <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold block mb-3">
+                1. Organizasyon Türünüzü Seçin
               </label>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {EVENT_TYPES.map((et) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {EVENT_TYPES.map((e) => (
                   <button
-                    key={et.id}
-                    type="button"
-                    onClick={() => setEventType(et.id)}
+                    key={e.id}
+                    onClick={() => setEventType(e.id)}
                     className={cn(
-                      'flex flex-col items-center text-center p-3.5 rounded-2xl border transition-all duration-300',
-                      eventType === et.id
-                        ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive/50'
-                        : 'border-border/60 hover:border-olive/40 bg-background/50'
+                      'p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between',
+                      eventType === e.id
+                        ? 'border-olive bg-olive/10 ring-1 ring-olive'
+                        : 'border-border/60 hover:border-olive/50 bg-background/50'
                     )}
                   >
-                    <span className="font-serif text-sm font-medium">{et.title}</span>
-                    <span className="text-[0.65rem] text-muted-foreground mt-1 line-clamp-1">
-                      ₺{et.basePrice.toLocaleString('tr-TR')}'den başlayan
-                    </span>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-serif text-sm font-semibold text-foreground">
+                          {e.title}
+                        </span>
+                        {eventType === e.id && (
+                          <Check className="size-4 text-olive shrink-0" />
+                        )}
+                      </div>
+                      <p className="text-[0.72rem] text-muted-foreground mt-1 line-clamp-1">
+                        {e.desc}
+                      </p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -145,47 +138,46 @@ Müsaitlik durumu ve net fiyat teklifi için bilgi alabilir miyim?`
             {/* Step 2: Guest Count Slider */}
             <div className="mt-8 pt-6 border-t border-border/60">
               <div className="flex items-center justify-between mb-3">
-                <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium flex items-center gap-1.5">
+                <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold flex items-center gap-1.5">
                   <Users className="size-3.5 text-olive" />
                   <span>2. Tahmini Davetli Sayısı</span>
                 </label>
-                <span className="font-serif text-lg text-olive font-semibold">
+                <span className="text-sm font-serif font-bold text-olive bg-olive/15 px-3 py-0.5 rounded-full">
                   {guestCount} Kişi
                 </span>
               </div>
               <input
                 type="range"
-                min={10}
-                max={400}
-                step={10}
+                min="20"
+                max="500"
+                step="10"
                 value={guestCount}
                 onChange={(e) => setGuestCount(Number(e.target.value))}
-                className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-olive"
+                className="w-full accent-olive h-2 bg-muted rounded-lg cursor-pointer"
               />
-              <div className="flex justify-between text-[0.68rem] text-muted-foreground mt-2">
-                <span>10 Kişi (Butik)</span>
-                <span>150 Kişi</span>
-                <span>400+ Kişi (Görkemli)</span>
+              <div className="flex justify-between text-[0.68rem] text-muted-foreground mt-1">
+                <span>20 Kişi (Butik)</span>
+                <span>250 Kişi</span>
+                <span>500+ Kişi (Geniş Davet)</span>
               </div>
             </div>
 
             {/* Step 3: Location */}
             <div className="mt-8 pt-6 border-t border-border/60">
-              <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium flex items-center gap-1.5 mb-3">
+              <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold flex items-center gap-1.5 mb-3">
                 <MapPin className="size-3.5 text-olive" />
-                <span>3. Organizasyon Şehri / Bölgesi</span>
+                <span>3. Etkinlik Bölgesi / Şehir</span>
               </label>
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {CITIES.map((c) => (
                   <button
                     key={c.id}
-                    type="button"
                     onClick={() => setCity(c.id)}
                     className={cn(
-                      'text-left px-3.5 py-2.5 rounded-xl border text-xs transition-all duration-200',
+                      'p-3 rounded-xl border text-xs text-center transition-all duration-200 font-medium',
                       city === c.id
-                        ? 'border-olive bg-olive text-olive-foreground font-medium shadow-sm'
-                        : 'border-border/60 hover:border-olive/40 bg-background/50 text-foreground/80'
+                        ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive font-semibold'
+                        : 'border-border/60 hover:border-olive/50 bg-background/50 text-muted-foreground'
                     )}
                   >
                     {c.name}
@@ -194,115 +186,124 @@ Müsaitlik durumu ve net fiyat teklifi için bilgi alabilir miyim?`
               </div>
             </div>
 
-            {/* Step 4: Addons */}
+            {/* Step 4: Add-on Services */}
             <div className="mt-8 pt-6 border-t border-border/60">
-              <label className="text-xs uppercase tracking-widest text-muted-foreground font-medium block mb-3">
-                4. Ekstra Hizmetler ve Şovlar (İsteğe Bağlı)
+              <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold flex items-center gap-1.5 mb-3">
+                <Sparkles className="size-3.5 text-olive" />
+                <span>4. Dahil Edilecek Ekstra Hizmetler</span>
               </label>
-              <div className="space-y-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {ADDONS.map((addon) => {
-                  const isChecked = selectedAddons.includes(addon.id)
+                  const isSelected = selectedAddons.includes(addon.id)
                   return (
-                    <div
+                    <button
                       key={addon.id}
                       onClick={() => toggleAddon(addon.id)}
                       className={cn(
-                        'flex items-center justify-between p-3 rounded-xl border cursor-pointer text-xs transition-all duration-200',
-                        isChecked
-                          ? 'border-olive/70 bg-olive/5 text-foreground'
-                          : 'border-border/60 hover:border-border text-muted-foreground'
+                        'p-3 rounded-xl border text-left flex items-center justify-between text-xs transition-all duration-200',
+                        isSelected
+                          ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive'
+                          : 'border-border/60 hover:border-olive/40 bg-background/50 text-muted-foreground'
                       )}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
                         <div
                           className={cn(
-                            'size-4 rounded border flex items-center justify-center transition-colors',
-                            isChecked ? 'bg-olive border-olive text-olive-foreground' : 'border-border'
+                            'size-4 rounded flex items-center justify-center border transition-colors',
+                            isSelected
+                              ? 'bg-olive border-olive text-olive-foreground'
+                              : 'border-muted-foreground/40'
                           )}
                         >
-                          {isChecked && <Check className="size-3" />}
+                          {isSelected && <Check className="size-3 stroke-[3]" />}
                         </div>
-                        <span className="font-medium text-foreground">{addon.name}</span>
+                        <span className="font-medium text-foreground/90">{addon.name}</span>
                       </div>
-                      <span className="font-serif text-olive font-medium shrink-0 ml-2">
-                        +₺{addon.price.toLocaleString('tr-TR')}
+                      <span className="text-[0.65rem] text-muted-foreground uppercase tracking-wider bg-muted/60 px-2 py-0.5 rounded">
+                        {addon.category}
                       </span>
-                    </div>
+                    </button>
                   )
                 })}
               </div>
             </div>
           </Reveal>
 
-          {/* Live Summary Card */}
-          <Reveal delay={120} className="lg:col-span-5 sticky top-28">
-            <div className="bg-card border border-border rounded-3xl p-7 shadow-xl backdrop-blur-md relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
-                <Sparkles className="size-32 text-olive" />
-              </div>
+          {/* Sticky Summary Card */}
+          <Reveal className="lg:col-span-5 lg:sticky lg:top-24" delay={120}>
+            <div className="bg-card border-2 border-olive/30 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 transform translate-x-4 -translate-y-4 size-32 bg-olive/10 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="text-[0.68rem] tracking-[0.25em] text-olive uppercase font-medium">
-                Tahmini Bütçe Özeti
-              </div>
-              <h3 className="font-serif text-2xl mt-1 text-foreground">
+              <span className="font-script text-olive text-2xl italic">Özel Paket Özeti</span>
+              <h3 className="font-serif text-2xl text-foreground font-medium mt-1">
                 {selectedEvent.title}
               </h3>
               <p className="text-xs text-muted-foreground mt-1">
-                {selectedCityObj.name} · {guestCount} Davetli
+                {selectedCityObj.name} · {guestCount} Kişilik Kapasite
               </p>
 
-              <div className="my-6 p-5 rounded-2xl bg-background border border-border/80 text-center">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground block mb-1">
-                  Tahmini Toplam Tutar Aralığı
-                </span>
-                <div className="font-serif text-3xl sm:text-4xl text-olive font-bold tracking-tight">
-                  ₺{calculation.totalMin.toLocaleString('tr-TR')} – ₺{calculation.totalMax.toLocaleString('tr-TR')}
+              {/* Selected Options List */}
+              <div className="mt-6 space-y-3 py-4 border-y border-border/70 text-xs">
+                <div className="flex justify-between items-center text-muted-foreground">
+                  <span>Organizasyon Konsepti:</span>
+                  <span className="font-semibold text-foreground">{selectedEvent.title}</span>
                 </div>
-                <p className="text-[0.68rem] text-muted-foreground mt-2 italic">
-                  * Fiyatlara malzeme, nakliye ve kurulum hizmeti dahildir.
+                <div className="flex justify-between items-center text-muted-foreground">
+                  <span>Bölge / Şehir:</span>
+                  <span className="font-semibold text-foreground">{selectedCityObj.name}</span>
+                </div>
+                <div className="flex justify-between items-center text-muted-foreground">
+                  <span>Davetli Kapasitesi:</span>
+                  <span className="font-semibold text-foreground">{guestCount} Kişi</span>
+                </div>
+                <div className="flex justify-between items-start text-muted-foreground pt-2 border-t border-border/40">
+                  <span>Seçilen Hizmetler:</span>
+                  <span className="font-semibold text-foreground text-right max-w-[55%]">
+                    {selectedAddons.length > 0 ? (
+                      selectedAddons
+                        .map((id) => ADDONS.find((a) => a.id === id)?.name)
+                        .filter(Boolean)
+                        .join(', ')
+                    ) : (
+                      'Temel Paket'
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Banner */}
+              <div className="mt-6 p-4 rounded-2xl bg-olive/10 border border-olive/20 text-center">
+                <p className="text-xs text-foreground font-medium">
+                  ✨ Size Özel Konsept & Şeffaf Paket Teklifi
+                </p>
+                <p className="text-[0.72rem] text-muted-foreground mt-1">
+                  Mekanınıza ve tarih seçiminize göre en uygun planlama hazırlanır.
                 </p>
               </div>
 
-              {/* Selections breakdown list */}
-              <div className="space-y-2 text-xs border-t border-border/60 pt-4">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Temel Paket Kapsamı:</span>
-                  <span className="font-medium text-foreground">₺{selectedEvent.basePrice.toLocaleString('tr-TR')}</span>
-                </div>
-                {guestCount > 50 && (
-                  <div className="flex justify-between text-muted-foreground">
-                    <span>Kişi Sayısı Farkı (+{guestCount - 50}):</span>
-                    <span className="font-medium text-foreground">₺{((guestCount - 50) * 45).toLocaleString('tr-TR')}</span>
-                  </div>
-                )}
-                {selectedAddons.length > 0 && (
-                  <div className="flex justify-between text-muted-foreground">
-                    <span>Seçilen Ekstralar ({selectedAddons.length} Adet):</span>
-                    <span className="font-medium text-olive">
-                      +₺
-                      {selectedAddons
-                        .reduce((s, id) => s + (ADDONS.find((a) => a.id === id)?.price || 0), 0)
-                        .toLocaleString('tr-TR')}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-8 space-y-3">
+              {/* CTA Buttons */}
+              <div className="mt-6 space-y-3">
                 <a
                   href={whatsappMessage}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-4 px-6 text-xs uppercase tracking-widest font-medium inline-flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md hover:shadow-lg"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-4 px-6 text-xs uppercase tracking-widest font-medium inline-flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md"
                 >
-                  <MessageSquare className="size-4 fill-current" />
-                  <span>WhatsApp ile Fiyatı Onayla</span>
+                  <MessageSquare className="size-4" />
+                  <span>WhatsApp ile Teklif Al</span>
+                </a>
+                <a
+                  href="#hizli-teklif"
+                  className="w-full bg-olive text-olive-foreground hover:bg-olive/90 rounded-full py-3.5 px-6 text-xs uppercase tracking-widest font-medium inline-flex items-center justify-center gap-2 transition-colors duration-300"
+                >
+                  <span>Teklif Formuna Aktar</span>
                   <ChevronRight className="size-4" />
                 </a>
-                <p className="text-[0.65rem] text-center text-muted-foreground">
-                  Seçtiğiniz paket detayları WhatsApp üzerinden müşteri temsilcimize otomatik iletilir.
-                </p>
               </div>
+
+              <p className="text-[0.68rem] text-center text-muted-foreground mt-4 leading-normal">
+                * Nevşehir ve çevre illere nakliye ve yerinde kurulum ekibimiz tarafından sağlanır.
+              </p>
             </div>
           </Reveal>
         </div>

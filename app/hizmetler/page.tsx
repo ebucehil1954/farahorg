@@ -9,9 +9,9 @@ import { Reveal } from '@/components/reveal'
 import { FloatingActionBar } from '@/components/floating-action-bar'
 
 export const metadata = {
-  title: 'Hizmet Paketleri & Şeffaf İçerikler | Farah Organizasyon Nevşehir',
+  title: 'Hizmetlerimiz & Paket Kapsamları | Farah Organizasyon Nevşehir Kapadokya',
   description:
-    'Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir bölgesi Düğün, Kına, Nişan ve Vadi Teklifi paket içerikleri, dahil olan ekipmanlar ve fiyat detayları.',
+    'Düğün, Kına Gecesi, Söz Nişan, Bride Party, Doğum Günü, Açılış, Masa Sandalye Kiralama ve Özel Davet organizasyonu hizmetlerimiz ve paket içerikleri.',
 }
 
 export default function ServicesPage() {
@@ -24,13 +24,13 @@ export default function ServicesPage() {
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-1.5 text-xs text-olive uppercase tracking-widest font-medium mb-4">
               <Sparkles className="size-3.5" />
-              <span>Nevşehir & Kapadokya Hizmet Paketleri</span>
+              <span>Nevşehir & Kapadokya Hizmetlerimiz</span>
             </div>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-balance">
-              Hizmet Kategorilerimiz & Paket Kapsamları
+              Hizmetlerimiz & Paket Kapsamları
             </h1>
-            <p className="mt-6 text-muted-foreground max-w-2xl mx-auto text-base leading-relaxed">
-              Nevşehir, Ürgüp, Göreme, Kayseri, Aksaray, Niğde ve Kırşehir bölgelerinde sunduğumuz 4 ana konsept paketimiz ve şeffaf hizmet checklist'i.
+            <p className="mt-6 text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+              Nevşehir, Kapadokya ve çevre illerde sunduğumuz 8 temel organizasyon hizmetimiz ve şeffaf paket checklist'i.
             </p>
             <span
               aria-hidden="true"
@@ -42,10 +42,10 @@ export default function ServicesPage() {
         {/* Services Grid */}
         <section className="mt-16 px-5 sm:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-12 md:grid-cols-2">
+            <div className="grid gap-10 md:grid-cols-2">
               {SERVICE_CATEGORIES.map((service, idx) => (
-                <Reveal key={service.slug} delay={idx * 100}>
-                  <article className="group flex flex-col h-full bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                <Reveal key={service.slug} delay={idx * 60}>
+                  <article className="group flex flex-col h-full bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-olive/50 transition-all duration-500">
                     <div className="arch bg-muted relative aspect-16/10 overflow-hidden m-4 mb-0">
                       <Image
                         src={service.heroImage}
@@ -61,9 +61,6 @@ export default function ServicesPage() {
                       <span className="font-script text-champagne absolute inset-x-0 bottom-4 text-center text-2xl italic">
                         {service.script}
                       </span>
-                      <span className="absolute top-4 right-4 bg-olive text-olive-foreground px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-medium shadow-md">
-                        ₺{service.priceStartingFrom.toLocaleString('tr-TR')}'den Başlayan
-                      </span>
                     </div>
 
                     <div className="p-7 flex flex-col justify-between flex-grow">
@@ -71,7 +68,7 @@ export default function ServicesPage() {
                         <h2 className="font-serif text-2xl text-foreground font-medium">
                           {service.title}
                         </h2>
-                        <p className="mt-2 text-xs text-olive uppercase tracking-widest font-medium">
+                        <p className="mt-2 text-xs text-olive uppercase tracking-widest font-semibold">
                           {service.subtitle}
                         </p>
                         <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -81,7 +78,7 @@ export default function ServicesPage() {
                         {/* Included checklist snippet */}
                         <div className="mt-6 border-t border-border/60 pt-5">
                           <span className="text-[0.65rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-3">
-                            Öne Çıkan Paket Ekipmanları:
+                            Öne Çıkan Paket Malzemeleri & Hizmetler:
                           </span>
                           <ul className="space-y-2">
                             {service.packageChecklist.slice(0, 5).map((item, i) => (
@@ -105,9 +102,9 @@ export default function ServicesPage() {
                         </span>
                         <Link
                           href={`/hizmetler/${service.slug}`}
-                          className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-2 rounded-full py-3 px-6 text-xs uppercase tracking-widest transition-colors duration-300 shadow-sm"
+                          className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-2 rounded-full py-3 px-6 text-xs uppercase tracking-widest transition-colors duration-300 shadow-sm font-semibold"
                         >
-                          <span>Tüm Paket İncele</span>
+                          <span>Paketi İncele</span>
                           <ArrowRight className="size-4" />
                         </Link>
                       </div>

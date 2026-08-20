@@ -8,11 +8,15 @@ import { Reveal } from '@/components/reveal'
 import { cn } from '@/lib/utils'
 
 const CATEGORY_OPTIONS = [
-  { slug: 'all', title: 'Tüm Konseptler' },
-  { slug: 'nisan', title: 'Söz & Nişan' },
-  { slug: 'kina', title: 'Kına Gecesi' },
+  { slug: 'all', title: 'Tüm Hizmetler' },
   { slug: 'dugun', title: 'Düğün' },
-  { slug: 'kapadokya', title: 'Kapadokya Özel' },
+  { slug: 'kina', title: 'Kına Gecesi' },
+  { slug: 'nisan', title: 'Söz & Nişan' },
+  { slug: 'bride-party', title: 'Bride Party' },
+  { slug: 'dogum-gunu', title: 'Doğum Günü' },
+  { slug: 'acilis', title: 'Açılış' },
+  { slug: 'masa-sandalye-kiralama', title: 'Masa & Sandalye' },
+  { slug: 'ozel-gun-davet', title: 'Özel Gün & Davet' },
 ]
 
 const COLOR_OPTIONS = [
@@ -26,11 +30,10 @@ const COLOR_OPTIONS = [
 
 const VENUE_OPTIONS = [
   { slug: 'all', title: 'Tüm Mekanlar' },
-  { slug: 'ev', title: 'Ev İçi' },
-  { slug: 'bahce', title: 'Bahçe / Kır' },
-  { slug: 'salon', title: 'Balo Salonu' },
-  { slug: 'vadi', title: 'Vadi (Kapadokya)' },
-  { slug: 'teras', title: 'Cave Teras' },
+  { slug: 'ev', title: 'Ev İçi / Salon' },
+  { slug: 'bahce', title: 'Bahçe / Kır Alanı' },
+  { slug: 'salon', title: 'Balo / Düğün Salonu' },
+  { slug: 'teras', title: 'Teras / Açık Hava' },
 ]
 
 export function FilterableCatalog() {
@@ -59,13 +62,13 @@ export function FilterableCatalog() {
         <Reveal className="text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-1.5 text-xs text-olive uppercase tracking-widest font-medium mb-4">
             <Filter className="size-3.5" />
-            <span>Filtrelenebilir Ürün & Konsept Kataloğu</span>
+            <span>Filtrelenebilir Konsept & Hizmet Kataloğu</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">
             Tasarım Kataloğumuzu Keşfedin
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Düğün, kına, nişan masaları ve Kapadokya vadi setups'larımızı renge, mekana ve kategoriye göre süzün; nelerin pakete dahil olduğunu şeffafça inceleyin.
+            Düğün, kına, nişan masaları, açılış, bride party ve doğum günü setups'larımızı kategoriye, renge ve mekana göre süzün; nelerin dahil olduğunu şeffafça inceleyin.
           </p>
         </Reveal>
 
@@ -74,7 +77,7 @@ export function FilterableCatalog() {
           {/* 1. Category Filter */}
           <div>
             <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
-              Etkinlik Kategorisi
+              Hizmet Kategorisi
             </span>
             <div className="flex flex-wrap gap-2">
               {CATEGORY_OPTIONS.map((cat) => (
@@ -82,9 +85,9 @@ export function FilterableCatalog() {
                   key={cat.slug}
                   onClick={() => setSelectedCategory(cat.slug)}
                   className={cn(
-                    'rounded-full px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200',
+                    'rounded-full px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200 font-medium',
                     selectedCategory === cat.slug
-                      ? 'bg-olive text-olive-foreground font-medium shadow-sm'
+                      ? 'bg-olive text-olive-foreground font-semibold shadow-sm'
                       : 'bg-background border border-border/70 text-muted-foreground hover:border-olive/50 hover:text-foreground'
                   )}
                 >
@@ -98,7 +101,7 @@ export function FilterableCatalog() {
             {/* 2. Color Theme Filter */}
             <div>
               <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
-                Renk Paleti
+                Renk Teması
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {COLOR_OPTIONS.map((col) => (
@@ -106,9 +109,9 @@ export function FilterableCatalog() {
                     key={col.slug}
                     onClick={() => setSelectedColor(col.slug)}
                     className={cn(
-                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200',
+                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200 font-medium',
                       selectedColor === col.slug
-                        ? 'bg-foreground text-background font-medium'
+                        ? 'bg-foreground text-background font-semibold'
                         : 'bg-background border border-border/70 text-muted-foreground hover:text-foreground'
                     )}
                   >
@@ -118,7 +121,7 @@ export function FilterableCatalog() {
               </div>
             </div>
 
-            {/* 3. Venue Type Filter */}
+            {/* 3. Venue Filter */}
             <div>
               <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
                 Mekan Türü
@@ -129,9 +132,9 @@ export function FilterableCatalog() {
                     key={ven.slug}
                     onClick={() => setSelectedVenue(ven.slug)}
                     className={cn(
-                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200',
+                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200 font-medium',
                       selectedVenue === ven.slug
-                        ? 'bg-foreground text-background font-medium'
+                        ? 'bg-foreground text-background font-semibold'
                         : 'bg-background border border-border/70 text-muted-foreground hover:text-foreground'
                     )}
                   >
@@ -142,10 +145,10 @@ export function FilterableCatalog() {
             </div>
           </div>
 
-          {/* Active filter count indicator */}
-          <div className="flex items-center justify-between pt-3 border-t border-border/50 text-xs text-muted-foreground">
+          {/* Active Filter Count & Reset */}
+          <div className="flex items-center justify-between text-xs text-muted-foreground pt-3 border-t border-border/40">
             <span>
-              Toplam <strong className="text-foreground font-serif">{filteredItems.length}</strong> konsept sergileniyor
+              Toplam <strong className="text-foreground">{filteredItems.length}</strong> konsept görseli listeleniyor
             </span>
             {(selectedCategory !== 'all' || selectedColor !== 'all' || selectedVenue !== 'all') && (
               <button
@@ -154,98 +157,111 @@ export function FilterableCatalog() {
                   setSelectedColor('all')
                   setSelectedVenue('all')
                 }}
-                className="text-olive hover:underline text-[0.7rem] uppercase tracking-wider"
+                className="text-olive hover:underline font-semibold text-xs"
               >
-                Filtreleri Temizle ×
+                Filtreleri Temizle
               </button>
             )}
           </div>
         </Reveal>
 
-        {/* Catalog Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Gallery Image Grid */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item, idx) => (
-            <Reveal key={item.id} delay={idx * 40}>
-              <article className="group bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
-                <div
-                  onClick={() => setActiveItem(item)}
-                  className="arch bg-muted relative aspect-4/3 overflow-hidden cursor-pointer m-3 mb-0"
-                >
+            <Reveal key={item.id} delay={idx * 50} className="group">
+              <div
+                onClick={() => setActiveItem(item)}
+                className="bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+              >
+                <div className="relative aspect-4/3 overflow-hidden bg-muted">
                   <Image
                     src={item.src}
                     alt={item.alt}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 95vw"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 92vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white">
-                    <Eye className="size-5" />
-                    <span className="text-xs uppercase tracking-widest font-medium">Paket İncele</span>
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="bg-white/95 text-foreground px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest backdrop-blur-sm inline-flex items-center gap-1.5 shadow-lg">
+                      <Eye className="size-3.5" />
+                      <span>Detayları Gör</span>
+                    </span>
                   </div>
-                  <span className="absolute top-3 right-3 bg-black/60 text-champagne text-[0.65rem] uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-sm">
+                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-champagne text-[0.62rem] uppercase tracking-widest px-3 py-1 rounded-full font-medium">
                     {item.categoryName}
                   </span>
                 </div>
 
-                <div className="p-6 flex flex-col justify-between flex-grow">
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-serif text-xl text-foreground font-medium">
-                        {item.title}
-                      </h3>
-                    </div>
-                    <p className="text-[0.7rem] text-olive uppercase tracking-widest font-medium mt-1 flex items-center gap-1">
-                      <MapPin className="size-3" />
-                      <span>{item.location}</span>
-                    </p>
-
-                    {/* Included items checklist snippet */}
-                    <div className="mt-4 border-t border-border/50 pt-3 space-y-1.5 text-xs text-muted-foreground">
-                      <span className="text-[0.62rem] uppercase tracking-widest text-muted-foreground/80 block font-semibold">
-                        Pakete Dahil Olanlar:
-                      </span>
-                      {item.includedItems.slice(0, 3).map((inc, i) => (
-                        <div key={i} className="flex items-center gap-2 text-foreground/80 text-[0.75rem]">
-                          <Check className="size-3.5 text-emerald-600 shrink-0" />
-                          <span>{inc}</span>
-                        </div>
-                      ))}
-                    </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-serif text-base font-medium text-foreground">
+                      {item.title}
+                    </h3>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-border/50 flex items-center gap-2">
-                    <button
-                      onClick={() => setActiveItem(item)}
-                      className="w-1/2 border border-border text-foreground hover:border-olive hover:text-olive rounded-full py-2.5 text-[0.68rem] uppercase tracking-widest transition-colors text-center"
-                    >
-                      Detay İncele
-                    </button>
-                    <button
-                      onClick={() => openWhatsAppForItem(item)}
-                      className="w-1/2 bg-olive text-olive-foreground hover:bg-olive/90 rounded-full py-2.5 text-[0.68rem] uppercase tracking-widest transition-colors text-center inline-flex items-center justify-center gap-1.5"
-                    >
-                      <MessageCircle className="size-3.5" />
-                      <span>Fiyat Al</span>
-                    </button>
+                  <div className="flex items-center gap-1 text-[0.7rem] text-muted-foreground mt-1">
+                    <MapPin className="size-3 text-olive" />
+                    <span>{item.location}</span>
+                  </div>
+
+                  {/* Included tags preview */}
+                  <div className="mt-4 pt-3 border-t border-border/60">
+                    <span className="text-[0.62rem] uppercase tracking-widest text-muted-foreground block mb-1.5 font-semibold">
+                      Örnek Dahil Ekipmanlar:
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {item.includedItems.slice(0, 3).map((inc, i) => (
+                        <span
+                          key={i}
+                          className="bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[0.62rem] px-2 py-0.5 rounded-full font-medium"
+                        >
+                          ✓ {inc}
+                        </span>
+                      ))}
+                      {item.includedItems.length > 3 && (
+                        <span className="text-[0.62rem] text-muted-foreground self-center px-1">
+                          +{item.includedItems.length - 3}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </article>
+              </div>
             </Reveal>
           ))}
         </div>
 
-        {/* Modal Item Detail View */}
-        {activeItem && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-card border border-border rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl">
-              <button
-                onClick={() => setActiveItem(null)}
-                className="absolute top-4 right-4 size-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X className="size-5" />
-              </button>
+        {filteredItems.length === 0 && (
+          <div className="py-16 text-center text-muted-foreground">
+            <p>Seçilen filtrelere uygun konsept bulunamadı.</p>
+            <button
+              onClick={() => {
+                setSelectedCategory('all')
+                setSelectedColor('all')
+                setSelectedVenue('all')
+              }}
+              className="mt-3 text-olive underline text-xs font-semibold"
+            >
+              Filtreleri Sıfırla
+            </button>
+          </div>
+        )}
+      </div>
 
-              <div className="arch relative aspect-16/10 w-full overflow-hidden rounded-2xl mb-6">
+      {/* Modal / Lightbox for Item Details */}
+      {activeItem && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+          <div className="bg-card border border-border rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col animate-in zoom-in-95 duration-300">
+            {/* Close button */}
+            <button
+              onClick={() => setActiveItem(null)}
+              className="absolute top-4 right-4 z-10 size-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
+            >
+              <X className="size-5" />
+            </button>
+
+            <div className="overflow-y-auto">
+              <div className="relative aspect-16/9 w-full bg-muted">
                 <Image
                   src={activeItem.src}
                   alt={activeItem.alt}
@@ -254,66 +270,70 @@ export function FilterableCatalog() {
                 />
               </div>
 
-              <div className="text-xs uppercase tracking-widest text-olive font-medium">
-                {activeItem.categoryName} · {activeItem.location}
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl mt-1 text-foreground">
-                {activeItem.title}
-              </h3>
-
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                {/* Included list */}
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4">
-                  <h4 className="text-xs font-semibold text-emerald-700 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                    <Check className="size-4 text-emerald-600" />
-                    <span>Pakete Dahil Olanlar</span>
-                  </h4>
-                  <ul className="space-y-2 text-xs text-foreground/80">
-                    {activeItem.includedItems.map((inc, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-emerald-600" />
-                        <span>{inc}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <div className="p-6 sm:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/80 pb-5">
+                  <div>
+                    <span className="text-xs uppercase tracking-widest text-olive font-semibold">
+                      {activeItem.categoryName} · {activeItem.location}
+                    </span>
+                    <h3 className="font-serif text-2xl sm:text-3xl text-foreground font-medium mt-1">
+                      {activeItem.title}
+                    </h3>
+                  </div>
                 </div>
 
-                {/* Optional list */}
-                <div className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4">
-                  <h4 className="text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                    <Plus className="size-4 text-amber-600" />
-                    <span>Opsiyonel Ekstralar</span>
-                  </h4>
-                  <ul className="space-y-2 text-xs text-foreground/80">
-                    {activeItem.optionalItems.map((opt, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="size-1.5 rounded-full bg-amber-600" />
-                        <span>{opt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                  {/* Included Items Checklist */}
+                  <div className="bg-background/80 border border-border/80 rounded-2xl p-5">
+                    <h4 className="text-xs uppercase tracking-widest text-emerald-600 font-bold mb-3 flex items-center gap-1.5">
+                      <Check className="size-4 stroke-[3]" />
+                      <span>Pakete Dahil Malzemeler</span>
+                    </h4>
+                    <ul className="space-y-2 text-xs text-foreground/90">
+                      {activeItem.includedItems.map((inc, i) => (
+                        <li key={i} className="flex items-center gap-2">
+                          <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                          <span>{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="mt-8 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-xs text-muted-foreground text-center sm:text-left">
-                  Bu konsept Nevşehir, Kayseri, Aksaray ve Niğde için mekana uygun özelleştirilebilir.
-                </p>
-                <button
-                  onClick={() => {
-                    openWhatsAppForItem(activeItem)
-                    setActiveItem(null)
-                  }}
-                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-3.5 px-8 text-xs uppercase tracking-widest font-medium inline-flex items-center justify-center gap-2 transition-colors shadow-md"
-                >
-                  <MessageCircle className="size-4 fill-current" />
-                  <span>WhatsApp ile Müsaitlik & Fiyat Al</span>
-                </button>
+                  {/* Optional Extras */}
+                  <div className="bg-background/80 border border-border/80 rounded-2xl p-5">
+                    <h4 className="text-xs uppercase tracking-widest text-amber-600 font-bold mb-3 flex items-center gap-1.5">
+                      <Plus className="size-4 stroke-[3]" />
+                      <span>Opsiyonel Eklenebilirler</span>
+                    </h4>
+                    <ul className="space-y-2 text-xs text-muted-foreground">
+                      {activeItem.optionalItems.map((opt, i) => (
+                        <li key={i} className="flex items-center gap-2">
+                          <span className="size-1.5 rounded-full bg-amber-500 shrink-0" />
+                          <span>{opt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* WhatsApp Action Button */}
+                <div className="mt-8 pt-5 border-t border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <span className="text-xs text-muted-foreground">
+                    * Nevşehir ve tüm çevre illerde yerinde kurulum yapılmaktadır.
+                  </span>
+                  <button
+                    onClick={() => openWhatsAppForItem(activeItem)}
+                    className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-3.5 px-8 text-xs uppercase tracking-widest font-semibold inline-flex items-center justify-center gap-2.5 transition-colors shadow-md"
+                  >
+                    <MessageCircle className="size-4 fill-current" />
+                    <span>Bu Konsept İçin WhatsApp'tan Teklif Al</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   )
 }

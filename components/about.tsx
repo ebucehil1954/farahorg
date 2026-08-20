@@ -21,30 +21,30 @@ export function About() {
         </Reveal>
 
         <Reveal delay={140}>
-          <p className="text-muted-foreground text-[0.62rem] tracking-[0.42em] uppercase">
+          <p className="text-muted-foreground text-[0.62rem] tracking-[0.42em] uppercase font-semibold">
             Hakkımızda
           </p>
           <h2 className="mt-5 font-serif text-3xl leading-[1.2] text-balance sm:text-4xl md:text-[2.6rem]">
             Nevşehir ve Kapadokya'da
-            <span className="font-script ml-2.5 italic">
+            <span className="font-script ml-2.5 italic text-olive">
               Zarafetin Peşinde
             </span>
           </h2>
 
           <div className="text-muted-foreground mt-7 space-y-5 text-[0.95rem] leading-relaxed text-pretty">
             <p>
-              Farah Organizasyon, 2014&apos;ten bu yana Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir bölgesinde düğün, kına, nişan ve vadide özel teklif organizasyonlarına editoryal bir estetik kazandırıyor.
+              Farah Organizasyon, 2014&apos;ten bu yana Nevşehir Kapadokya merkezli olarak düğün, kına, söz & nişan, bride party, doğum günü, açılış ve özel davet organizasyonlarına zarafet ve estetik kazandırıyor.
             </p>
             <p>
-              Peri bacalarının büyüleyici silüeti, otantik taş konaklar, bağ evleri ve salonlarda; ışıklı ahşap taglar, lüks kına tahtları, canlı çiçekler ve mum ışıkları ile hayal ettiğiniz atmosferi sıfırdan kuruyoruz.
+              Otantik taş konaklar, bağ evleri, salonlar ve açık hava mekanlarında; gelin masası fonları, lüks kına tahtları, masa sandalye giydirmeleri, canlı/yapay çiçekler ve profesyonel ses-müzik sistemleri ile hayal ettiğiniz atmosferi sıfırdan kuruyoruz.
             </p>
           </div>
 
           <dl className="border-border/70 mt-11 grid grid-cols-3 gap-6 border-t pt-8">
             {[
-              { k: '350+', v: 'Bölgesel Etkinlik' },
+              { k: '450+', v: 'Bölgesel Etkinlik' },
               { k: '12', v: 'Yıllık Tecrübe' },
-              { k: '%100', v: 'Şeffaf Bütçe' },
+              { k: '%100', v: 'Müşteri Memnuniyeti' },
             ].map((s) => (
               <div key={s.v}>
                 <dt className="font-serif text-2xl sm:text-[1.75rem]">

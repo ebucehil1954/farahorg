@@ -6,9 +6,9 @@ import { FilterableCatalog } from '@/components/filterable-catalog'
 import { FloatingActionBar } from '@/components/floating-action-bar'
 
 export const metadata = {
-  title: 'Konsept & Dekor Kataloğu | Farah Organizasyon Nevşehir',
+  title: 'Konsept & Dekor Kataloğu | Farah Organizasyon Nevşehir Kapadokya',
   description:
-    'Nevşehir, Kapadokya, Kayseri ve Aksaray bölgelerinde gerçekleştirdiğimiz nişan masaları, kına tahtları, kır düğünü dekorasyonları ve vadi piknik konseptleri.',
+    'Nevşehir Kapadokya, Kayseri, Aksaray ve Niğde bölgelerinde gerçekleştirdiğimiz düğün, kına, nişan, bride party, açılış ve doğum günü konsept seçkileri.',
 }
 
 export default function GalleryPage() {
@@ -33,7 +33,7 @@ export default function GalleryPage() {
               Ürün & Konsept Kataloğu
             </h1>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-              Düğün, nişan, kına ve Kapadokya evlilik tekliflerimizden 25 imza kare. Kategori, renk paleti ve mekana göre süzerek paket detaylarını inceleyebilirsiniz.
+              Düğün, kına, söz-nişan, açılış, doğum günü, bride party ve davet konseptlerimizden imza kareler. Kategori, renk paleti ve mekana göre süzerek paket detaylarını inceleyebilirsiniz.
             </p>
           </Reveal>
         </section>

@@ -12,12 +12,14 @@ import {
   MapPin,
   Compass,
   ShieldCheck,
+  Gift,
+  PartyPopper,
   ArrowRight,
   ArrowLeft,
   CheckCircle2,
   Check,
   Plus,
-  Calculator,
+  Sliders,
   MessageCircle,
 } from 'lucide-react'
 
@@ -39,6 +41,8 @@ const iconMap = {
   MapPin,
   Compass,
   ShieldCheck,
+  Gift,
+  PartyPopper,
 }
 
 export function generateStaticParams() {
@@ -60,7 +64,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.title} | Nevşehir & Kapadokya Farah Organizasyon`,
+    title: `${service.title} | Nevşehir Kapadokya Farah Organizasyon`,
     description: service.shortDescription,
   }
 }
@@ -86,7 +90,7 @@ export default async function ServiceDetailPage({
     SERVICE_CATEGORIES[(serviceIndex + 1) % SERVICE_CATEGORIES.length]
 
   const whatsappUrl = `https://wa.me/905300000000?text=${encodeURIComponent(
-    `Merhaba Farah Organizasyon! "${service.title}" paketiniz hakkında teklif ve müsaitlik bilgisi almak istiyorum.`
+    `Merhaba Farah Organizasyon! "${service.title}" paketiniz hakkında konsept detayları, müsaitlik ve teklif bilgisi almak istiyorum.`
   )}`
 
   return (
@@ -127,7 +131,7 @@ export default async function ServiceDetailPage({
                 <p className="mt-4 text-lg font-serif italic text-muted-foreground">
                   {service.subtitle}
                 </p>
-                <p className="mt-6 text-foreground/85 leading-relaxed max-w-2xl">
+                <p className="mt-6 text-foreground/85 leading-relaxed max-w-2xl text-base sm:text-lg">
                   {service.longDescription}
                 </p>
 
@@ -136,17 +140,17 @@ export default async function ServiceDetailPage({
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-medium transition-all shadow-md"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-semibold transition-all shadow-md"
                   >
                     <MessageCircle className="size-4 fill-current" />
-                    <span>WhatsApp ile Fiyat Al</span>
+                    <span>WhatsApp ile Teklif Al</span>
                   </a>
                   <a
                     href="/#hesaplayici"
-                    className="border border-olive text-olive hover:bg-olive/10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-xs tracking-[0.18em] uppercase font-medium transition-colors"
+                    className="border border-olive text-olive hover:bg-olive/10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-xs tracking-[0.18em] uppercase font-semibold transition-colors"
                   >
-                    <Calculator className="size-4" />
-                    <span>Bütçe Simülatörü</span>
+                    <Sliders className="size-4" />
+                    <span>Paket Planlayıcı</span>
                   </a>
                 </div>
               </Reveal>
@@ -164,13 +168,10 @@ export default async function ServiceDetailPage({
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"
                   />
-                  <span className="font-script text-champagne absolute inset-x-0 bottom-6 text-center text-xl italic">
+                  <span className="font-script text-champagne absolute inset-x-0 bottom-6 text-center text-2xl italic">
                     {service.script}
-                  </span>
-                  <span className="absolute top-4 right-4 bg-olive text-olive-foreground px-4 py-1.5 rounded-full text-xs uppercase tracking-widest font-medium shadow-md">
-                    ₺{service.priceStartingFrom.toLocaleString('tr-TR')}'den Başlayan
                   </span>
                 </div>
               </Reveal>
@@ -185,19 +186,19 @@ export default async function ServiceDetailPage({
               <Reveal className="bg-card border border-border/80 rounded-3xl p-8 sm:p-12 shadow-sm">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border/60 pb-6 mb-8">
                   <div>
-                    <span className="text-xs uppercase tracking-[0.3em] text-olive font-medium">
+                    <span className="text-xs uppercase tracking-[0.3em] text-olive font-semibold">
                       Şeffaf Paket İçeriği
                     </span>
                     <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-medium text-foreground">
-                      {service.title} Checklist'i
+                      {service.title} Paket Detayları
                     </h2>
                   </div>
                   <span className="text-xs text-muted-foreground italic">
-                    * Tüm malzemeler ve yerinde kurulum pakete dahildir
+                    * Tüm malzemeler ve yerinde kurulum ekibimiz tarafından sağlanır
                   </span>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
                   {service.packageChecklist.map((item, idx) => (
                     <div
                       key={idx}
@@ -221,16 +222,35 @@ export default async function ServiceDetailPage({
                             <Plus className="size-3 stroke-[3]" />
                           )}
                         </span>
-                        <span className="font-medium">{item.name}</span>
+                        <span className="font-medium text-sm">{item.name}</span>
                       </div>
                       {item.note && (
-                        <span className="text-[0.65rem] uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-700 font-semibold shrink-0 ml-2">
+                        <span className="text-[0.65rem] uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-semibold shrink-0 ml-2">
                           {item.note}
                         </span>
                       )}
                     </div>
                   ))}
                 </div>
+
+                {/* Service Areas (e.g. for Masa Sandalye Kiralama) */}
+                {service.serviceAreas && service.serviceAreas.length > 0 && (
+                  <div className="mt-8 pt-6 border-t border-border/60">
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground font-semibold block mb-3">
+                      💐 Kullanım Alanları:
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {service.serviceAreas.map((area, i) => (
+                        <span
+                          key={i}
+                          className="bg-olive/10 border border-olive/20 text-olive text-xs font-semibold px-3.5 py-1 rounded-full"
+                        >
+                          {area}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </Reveal>
             </div>
           </section>
@@ -240,23 +260,23 @@ export default async function ServiceDetailPage({
         <section className="mt-20 bg-secondary/40 border-y border-border/60 py-20 px-5 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <Reveal className="text-center max-w-2xl mx-auto">
-              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                Bölgesel Tasarım Dokusu
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-semibold">
+                Tasarım Detayları & Unsurlar
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
-                Tasarım Kodları & Detaylar
+                Konsept Unsurları & Özellikler
               </h2>
             </Reveal>
 
             <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {service.aestheticCues.map((cue, idx) => (
-                <Reveal key={cue.title} delay={idx * 100}>
+                <Reveal key={cue.title} delay={idx * 80}>
                   <div className="bg-card border border-border/80 rounded-2xl p-6 h-full flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
-                      <span className="text-[0.68rem] tracking-widest text-olive uppercase font-semibold">
+                      <span className="text-[0.68rem] tracking-widest text-olive uppercase font-bold">
                         {cue.title}
                       </span>
-                      <h3 className="font-serif text-xl mt-2 text-foreground">
+                      <h3 className="font-serif text-xl mt-2 text-foreground font-medium">
                         {cue.value}
                       </h3>
                       <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
@@ -274,14 +294,14 @@ export default async function ServiceDetailPage({
         <section id="hizmet-kapsami" className="py-24 px-5 sm:px-8">
           <div className="mx-auto max-w-7xl">
             <Reveal className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.35em] text-olive font-medium">
-                Operasyonel Süreç
+              <p className="text-xs uppercase tracking-[0.35em] text-olive font-semibold">
+                Operasyon & Kurulum
               </p>
               <h2 className="mt-3 font-serif text-3xl sm:text-4xl md:text-5xl">
-                Süreç Takibi & Kurulum
+                Hizmet Kapsamı & Süreç
               </h2>
               <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-                {service.title} organizasyonunda Nevşehir ve Kapadokya genelinde sunduğumuz profesyonel hizmet adımları.
+                {service.title} için sunduğumuz profesyonel adımlar ve operasyonel destek.
               </p>
             </Reveal>
 
@@ -289,12 +309,12 @@ export default async function ServiceDetailPage({
               {service.includes.map((inc, i) => {
                 const IconComponent = iconMap[inc.iconName] || Sparkles
                 return (
-                  <Reveal key={inc.title} delay={i * 90}>
+                  <Reveal key={inc.title} delay={i * 80}>
                     <div className="group border border-border bg-card/60 hover:bg-card hover:border-olive/50 rounded-2xl p-8 transition-all duration-300">
                       <div className="size-12 rounded-xl bg-olive/10 text-olive flex items-center justify-center group-hover:bg-olive group-hover:text-olive-foreground transition-colors duration-300">
                         <IconComponent className="size-6" strokeWidth={1.5} />
                       </div>
-                      <h3 className="font-serif text-xl mt-6 text-foreground">
+                      <h3 className="font-serif text-xl mt-6 text-foreground font-medium">
                         {inc.title}
                       </h3>
                       <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -309,36 +329,38 @@ export default async function ServiceDetailPage({
         </section>
 
         {/* Dedicated Service Gallery */}
-        <section className="bg-secondary/40 border-y border-border/60 py-24 px-5 sm:px-8">
-          <div className="mx-auto max-w-7xl">
-            <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div>
-                <span className="font-script text-olive text-2xl italic">
-                  İlham Galerisi
-                </span>
-                <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
-                  {service.title} Seçkileri
-                </h2>
-              </div>
-              <Link
-                href="/galeri"
-                className="text-xs uppercase tracking-widest text-olive hover:underline inline-flex items-center gap-2"
-              >
-                <span>Tüm Kataloğu İncele</span>
-                <ArrowRight className="size-4" />
-              </Link>
-            </Reveal>
+        {service.galleryImages && service.galleryImages.length > 0 && (
+          <section className="bg-secondary/40 border-y border-border/60 py-24 px-5 sm:px-8">
+            <div className="mx-auto max-w-7xl">
+              <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                  <span className="font-script text-olive text-2xl italic">
+                    İlham Galerisi
+                  </span>
+                  <h2 className="mt-2 font-serif text-3xl sm:text-4xl">
+                    {service.title} Seçkileri
+                  </h2>
+                </div>
+                <Link
+                  href="/galeri"
+                  className="text-xs uppercase tracking-widest text-olive hover:underline inline-flex items-center gap-2 font-semibold"
+                >
+                  <span>Tüm Kataloğu İncele</span>
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Reveal>
 
-            <ServiceGalleryView images={service.galleryImages} />
-          </div>
-        </section>
+              <ServiceGalleryView images={service.galleryImages} />
+            </div>
+          </section>
+        )}
 
         {/* FAQ Section */}
         {service.faq && service.faq.length > 0 && (
           <section className="py-24 px-5 sm:px-8">
             <div className="mx-auto max-w-4xl">
               <Reveal className="text-center mb-14">
-                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-semibold">
                   Sıkça Sorulan Sorular
                 </p>
                 <h2 className="mt-3 font-serif text-3xl sm:text-4xl">
@@ -348,13 +370,12 @@ export default async function ServiceDetailPage({
 
               <div className="space-y-6">
                 {service.faq.map((item, idx) => (
-                  <Reveal key={idx} delay={idx * 100}>
-                    <div className="border border-border bg-card rounded-2xl p-6 sm:p-8">
-                      <h3 className="font-serif text-lg sm:text-xl font-medium text-foreground flex items-start gap-3">
-                        <CheckCircle2 className="size-5 text-olive shrink-0 mt-0.5" />
-                        <span>{item.question}</span>
+                  <Reveal key={idx} delay={idx * 70}>
+                    <div className="bg-card border border-border/80 rounded-2xl p-6 sm:p-8">
+                      <h3 className="font-serif text-lg sm:text-xl text-foreground">
+                        {item.question}
                       </h3>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed pl-8">
+                      <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {item.answer}
                       </p>
                     </div>
@@ -365,40 +386,48 @@ export default async function ServiceDetailPage({
           </section>
         )}
 
-        {/* Service Navigator */}
-        <section className="border-t border-border/80 py-12 px-5 sm:px-8">
+        {/* Next / Prev Service Navigation */}
+        <section className="border-t border-border/60 py-16 px-5 sm:px-8">
           <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-6">
             <Link
               href={`/hizmetler/${prevService.slug}`}
-              className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-4 text-left group"
             >
-              <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
+              <div className="size-10 rounded-full border border-border flex items-center justify-center group-hover:border-olive group-hover:bg-olive/10 transition-colors">
+                <ArrowLeft className="size-4 text-olive" />
+              </div>
               <div>
-                <span className="text-[0.62rem] uppercase tracking-widest block text-muted-foreground">
+                <span className="text-[0.65rem] uppercase tracking-widest text-muted-foreground block">
                   Önceki Hizmet
                 </span>
-                <span className="font-serif text-lg">{prevService.title}</span>
+                <span className="font-serif text-base text-foreground group-hover:text-olive transition-colors font-medium">
+                  {prevService.title}
+                </span>
               </div>
             </Link>
 
             <Link
               href="/hizmetler"
-              className="text-xs uppercase tracking-widest text-olive hover:underline font-medium"
+              className="text-xs uppercase tracking-widest text-olive hover:underline font-semibold"
             >
-              Tüm Hizmetler
+              Tüm Hizmetler Listesi
             </Link>
 
             <Link
               href={`/hizmetler/${nextService.slug}`}
-              className="group flex items-center gap-3 text-right text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-4 text-right group"
             >
               <div>
-                <span className="text-[0.62rem] uppercase tracking-widest block text-muted-foreground">
+                <span className="text-[0.65rem] uppercase tracking-widest text-muted-foreground block">
                   Sonraki Hizmet
                 </span>
-                <span className="font-serif text-lg">{nextService.title}</span>
+                <span className="font-serif text-base text-foreground group-hover:text-olive transition-colors font-medium">
+                  {nextService.title}
+                </span>
               </div>
-              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+              <div className="size-10 rounded-full border border-border flex items-center justify-center group-hover:border-olive group-hover:bg-olive/10 transition-colors">
+                <ArrowRight className="size-4 text-olive" />
+              </div>
             </Link>
           </div>
         </section>

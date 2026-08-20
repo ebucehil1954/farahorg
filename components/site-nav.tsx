@@ -10,8 +10,9 @@ import { SERVICE_CATEGORIES } from '@/lib/services-data'
 const navLinks = [
   { href: '/hizmetler', label: 'Hizmetler', hasDropdown: true },
   { href: '/galeri', label: 'Galeri' },
+  { href: '/#hesaplayici', label: 'Paket Planlayıcı' },
+  { href: '/#portfolyo', label: 'Portfolyo' },
   { href: '/#hakkimizda', label: 'Hakkımızda' },
-  { href: '/#surec', label: 'Süreç' },
   { href: '/#iletisim', label: 'İletişim' },
 ]
 
@@ -87,7 +88,7 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden items-center gap-9 lg:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((l) => (
             <li key={l.href} className="relative group">
               {l.hasDropdown ? (
@@ -112,34 +113,36 @@ export function SiteNav() {
                   {/* Dropdown Menu */}
                   <div
                     className={cn(
-                      'absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 transition-all duration-300',
+                      'absolute left-1/2 -translate-x-1/2 top-full pt-3 w-80 transition-all duration-300',
                       dropdownOpen
                         ? 'opacity-100 visible translate-y-0'
                         : 'opacity-0 invisible -translate-y-2',
                     )}
                   >
                     <div className="bg-card border border-border/80 rounded-2xl p-3 shadow-xl backdrop-blur-md">
-                      <div className="text-[0.6rem] tracking-widest text-muted-foreground uppercase px-3 py-1.5 border-b border-border/50 mb-1">
-                        Hizmet Kategorilerimiz
+                      <div className="text-[0.6rem] tracking-widest text-muted-foreground uppercase px-3 py-1.5 border-b border-border/50 mb-1 font-semibold">
+                        Hizmetlerimiz
                       </div>
-                      {SERVICE_CATEGORIES.map((cat) => (
-                        <Link
-                          key={cat.slug}
-                          href={`/hizmetler/${cat.slug}`}
-                          className="flex items-center justify-between px-3 py-2 text-xs rounded-xl hover:bg-olive/10 hover:text-olive transition-colors"
-                        >
-                          <span className="font-serif text-sm">
-                            {cat.title}
-                          </span>
-                          <span className="font-script text-xs italic text-muted-foreground">
-                            {cat.script}
-                          </span>
-                        </Link>
-                      ))}
+                      <div className="space-y-0.5 max-h-[380px] overflow-y-auto">
+                        {SERVICE_CATEGORIES.map((cat) => (
+                          <Link
+                            key={cat.slug}
+                            href={`/hizmetler/${cat.slug}`}
+                            className="flex items-center justify-between px-3 py-2 text-xs rounded-xl hover:bg-olive/10 hover:text-olive transition-colors group/item"
+                          >
+                            <span className="font-serif text-[0.82rem] text-foreground/90 group-hover/item:text-olive font-medium">
+                              {cat.title}
+                            </span>
+                            <span className="font-script text-xs italic text-muted-foreground">
+                              {cat.script}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
                       <div className="mt-2 pt-2 border-t border-border/50 text-center">
                         <Link
                           href="/hizmetler"
-                          className="text-[0.65rem] tracking-widest uppercase text-olive hover:underline block py-1 font-medium"
+                          className="text-[0.65rem] tracking-widest uppercase text-olive hover:underline block py-1 font-semibold"
                         >
                           Tüm Hizmetleri İncele →
                         </Link>
@@ -171,32 +174,34 @@ export function SiteNav() {
         </ul>
 
         <Link
-          href="/#iletisim"
+          href="/#hizli-teklif"
           className={cn(
-            'hidden rounded-full border px-6 py-2.5 text-[0.68rem] tracking-[0.2em] uppercase transition-all duration-300 lg:inline-block',
+            'hidden rounded-full border px-6 py-2.5 text-[0.68rem] tracking-[0.2em] uppercase transition-all duration-300 lg:inline-block font-semibold',
             scrolled || !isHomePage
               ? 'bg-olive text-olive-foreground border-olive hover:bg-olive/90'
               : 'border-champagne/50 text-champagne hover:bg-champagne hover:text-foreground',
           )}
         >
-          Randevu Al
+          Teklif Al
         </Link>
 
         {/* Mobile menu trigger */}
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
           className={cn(
-            'relative z-50 lg:hidden',
-            open || scrolled || !isHomePage ? 'text-foreground' : 'text-champagne',
+            'relative z-50 p-2 lg:hidden transition-colors',
+            scrolled || !isHomePage
+              ? 'text-foreground'
+              : 'text-champagne hover:text-champagne/80',
           )}
         >
           {open ? (
-            <X className="size-6" strokeWidth={1.25} />
+            <X className="size-6 text-foreground" />
           ) : (
-            <Menu className="size-6" strokeWidth={1.25} />
+            <Menu className="size-6" />
           )}
         </button>
       </nav>
@@ -204,7 +209,7 @@ export function SiteNav() {
       {/* Mobile drawer */}
       <div
         className={cn(
-          'bg-background fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 px-6 transition-all duration-400 lg:hidden overflow-y-auto pt-20 pb-10',
+          'bg-background fixed inset-0 z-40 flex flex-col items-center justify-start gap-5 px-6 transition-all duration-400 lg:hidden overflow-y-auto pt-24 pb-12',
           open
             ? 'visible opacity-100'
             : 'pointer-events-none invisible opacity-0',
@@ -213,7 +218,7 @@ export function SiteNav() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="font-serif text-2xl tracking-widest uppercase mb-4"
+          className="font-serif text-2xl tracking-widest uppercase mb-2"
         >
           Farah <span className="font-script text-sm italic">organizasyon</span>
         </Link>
@@ -223,9 +228,9 @@ export function SiteNav() {
             key={l.href}
             href={l.href}
             onClick={() => setOpen(false)}
-            style={{ transitionDelay: open ? `${i * 50 + 80}ms` : '0ms' }}
+            style={{ transitionDelay: open ? `${i * 40 + 60}ms` : '0ms' }}
             className={cn(
-              'font-serif text-2xl transition-all duration-500 text-center',
+              'font-serif text-xl transition-all duration-500 text-center',
               open ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
             )}
           >
@@ -233,9 +238,9 @@ export function SiteNav() {
           </Link>
         ))}
 
-        <div className="w-full max-w-xs border-t border-border/80 my-2 pt-4">
-          <p className="text-[0.62rem] tracking-widest text-muted-foreground uppercase text-center mb-3">
-            Hızlı Hizmet Erişimi
+        <div className="w-full max-w-sm border-t border-border/80 my-2 pt-4">
+          <p className="text-[0.62rem] tracking-widest text-muted-foreground uppercase text-center mb-3 font-semibold">
+            Hizmet Kategorilerimiz
           </p>
           <div className="grid grid-cols-2 gap-2 text-center">
             {SERVICE_CATEGORIES.map((cat) => (
@@ -243,7 +248,7 @@ export function SiteNav() {
                 key={cat.slug}
                 href={`/hizmetler/${cat.slug}`}
                 onClick={() => setOpen(false)}
-                className="bg-card border border-border/60 rounded-xl p-2.5 text-xs font-serif hover:border-olive transition-colors"
+                className="bg-card border border-border/60 rounded-xl p-2.5 text-[0.72rem] font-serif hover:border-olive transition-colors leading-tight"
               >
                 {cat.title}
               </Link>
@@ -252,11 +257,11 @@ export function SiteNav() {
         </div>
 
         <Link
-          href="/#iletisim"
+          href="/#hizli-teklif"
           onClick={() => setOpen(false)}
-          className="bg-olive text-olive-foreground mt-2 rounded-full px-8 py-3.5 text-[0.7rem] tracking-[0.2em] uppercase"
+          className="bg-olive text-olive-foreground mt-2 rounded-full px-8 py-3.5 text-[0.7rem] tracking-[0.2em] uppercase font-semibold"
         >
-          Randevu Al
+          Hızlı Teklif Al
         </Link>
       </div>
     </header>

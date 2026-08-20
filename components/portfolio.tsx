@@ -11,45 +11,45 @@ import { ImageLightbox } from '@/components/image-lightbox'
 const works = [
   {
     image: '/images/raw/img-4.jpeg',
-    alt: 'Kapadokya peri bacaları manzaralı kır düğününde, taze çiçekler ve mumlarla bezenmiş ziyafet masası',
-    title: 'Kapadokya Masalı',
+    alt: 'Kır düğününde taze çiçekler ve mumlarla bezenmiş ziyafet masası',
+    title: 'Kır Düğünü Seremonisi',
     place: 'Göreme, Nevşehir',
     category: 'Düğün',
   },
   {
     image: '/images/raw/img-1.jpeg',
-    alt: 'Beyaz kağıt çiçekler ve neon ışıkla süslenmiş yuvarlak arka planlı modern nişan masası dekorasyonu',
-    title: 'Şampanya Nişan',
+    alt: 'Pleksi fonlu modern nişan masası dekorasyonu',
+    title: 'Şampanya Nişan Fonu',
     place: 'Nevşehir Merkez',
-    category: 'Nişan',
+    category: 'Söz & Nişan',
   },
   {
     image: '/images/raw/img-21.jpeg',
-    alt: 'Kırmızı kadife taht, kırmızı güllerden kemer ve kına gecesi neon yazısı ile hazırlanmış kına köşesi',
+    alt: 'Kırmızı kadife taht ve kına gecesi dekoru',
     title: 'Saray Kına Gecesi',
-    place: 'Aksaray Salon',
+    place: 'Aksaray',
     category: 'Kına Gecesi',
   },
   {
-    image: '/images/raw/img-10.jpeg',
-    alt: 'Kızılçukur vadisinde ahşap çardak ve mermer masa üzerine kurulmuş lüks piknik ve teklif alanı',
-    title: 'Kızılçukur Vadi Teklifi',
-    place: 'Kızılçukur Vadisi, Ürgüp',
-    category: 'Kapadokya Özel',
+    image: '/images/raw/img-12.jpeg',
+    alt: 'Bride to be parti masası',
+    title: 'Bride Party Kutlama Alanı',
+    place: 'Göreme, Nevşehir',
+    category: 'Bride Party',
   },
   {
     image: '/images/raw/img-11.jpeg',
-    alt: 'Doğada kristal şamdanlar ve Napolyon sandalyeler ile kurulmuş lüks gala yemeği',
+    alt: 'Kristal şamdanlar ve Napolyon sandalyeler ile gala yemeği',
     title: 'Lüks Balo Gala Yemeği',
     place: 'Kayseri',
     category: 'Düğün',
   },
   {
     image: '/images/raw/img-6.jpeg',
-    alt: 'Pastel çiçekler ve şeffaf akrilik isimlikle süslenmiş butik ev söz masası',
-    title: 'Butik Ev Sözü',
+    alt: 'Pastel çiçekler ve akrilik isimlikle butik ev söz masası',
+    title: 'Butik Ev Sözü Kurgusu',
     place: 'Niğde',
-    category: 'Söz',
+    category: 'Söz & Nişan',
   },
 ]
 
@@ -83,11 +83,11 @@ export function Portfolio() {
           </div>
           <div className="flex flex-col items-start md:items-end gap-3">
             <p className="text-muted-foreground max-w-sm text-[0.92rem] leading-relaxed text-pretty md:text-right">
-              Nevşehir, Kapadokya, Kayseri, Aksaray ve Niğde bölgesinde hayata geçirdiğimiz imza projeler.
+              Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir genelinde hayata geçirdiğimiz imza projeler.
             </p>
             <Link
               href="/galeri"
-              className="text-olive hover:underline text-xs tracking-widest uppercase font-medium inline-flex items-center gap-2"
+              className="text-olive hover:underline text-xs tracking-widest uppercase font-semibold inline-flex items-center gap-2"
             >
               <span>Tüm Kataloğu Gör (25 Fotoğraf)</span>
               <ArrowRight className="size-4" />
@@ -97,7 +97,7 @@ export function Portfolio() {
 
         <ul className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {works.map((w, i) => (
-            <Reveal as="li" key={w.title} delay={i * 100} className="group">
+            <Reveal as="li" key={w.title} delay={i * 80} className="group">
               <figure
                 onClick={() => setActiveLightboxIndex(i)}
                 className="cursor-pointer"
@@ -114,7 +114,7 @@ export function Portfolio() {
                     aria-hidden="true"
                     className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                   >
-                    <span className="bg-white/90 text-foreground px-5 py-2 rounded-full text-xs uppercase tracking-widest backdrop-blur-sm flex items-center gap-2">
+                    <span className="bg-white/90 text-foreground px-5 py-2 rounded-full text-xs uppercase tracking-widest backdrop-blur-sm flex items-center gap-2 font-semibold">
                       <Eye className="size-4" />
                       <span>İncele</span>
                     </span>
@@ -122,12 +122,12 @@ export function Portfolio() {
                 </div>
                 <figcaption className="mt-5 flex items-baseline justify-between gap-4 px-1">
                   <div>
-                    <span className="font-serif text-lg block">{w.title}</span>
+                    <span className="font-serif text-lg block font-medium">{w.title}</span>
                     <span className="text-olive text-xs font-script italic">
                       {w.category}
                     </span>
                   </div>
-                  <span className="text-muted-foreground text-[0.62rem] tracking-[0.2em] uppercase">
+                  <span className="text-muted-foreground text-[0.62rem] tracking-[0.2em] uppercase font-medium">
                     {w.place}
                   </span>
                 </figcaption>
@@ -139,7 +139,7 @@ export function Portfolio() {
         <Reveal className="mt-16 text-center lg:mt-12">
           <Link
             href="/galeri"
-            className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-3 rounded-full px-10 py-4 text-[0.68rem] tracking-[0.24em] uppercase transition-colors duration-300"
+            className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-3 rounded-full px-10 py-4 text-xs tracking-[0.24em] uppercase transition-colors duration-300 shadow-md font-semibold"
           >
             <span>Filtrelenebilir Kataloğa Git</span>
             <ArrowRight className="size-4" />

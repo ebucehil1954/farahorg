@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Phone, MessageCircle, Calculator, X } from 'lucide-react'
+import { Phone, MessageCircle, Sliders, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function FloatingActionBar() {
@@ -9,7 +9,7 @@ export function FloatingActionBar() {
 
   const phone = '+90 530 000 00 00'
   const whatsappUrl = `https://wa.me/905300000000?text=${encodeURIComponent(
-    'Merhaba Farah Organizasyon! Nevşehir/Kapadokya bölgesi düğün & nişan organizasyonu hakkında bilgi ve randevu almak istiyorum.'
+    'Merhaba Farah Organizasyon! Nevşehir Kapadokya organizasyon hizmetleriniz hakkında bilgi ve teklif almak istiyorum.'
   )}`
 
   return (
@@ -22,11 +22,11 @@ export function FloatingActionBar() {
             href="#hesaplayici"
             className="group flex items-center gap-2.5 rounded-full bg-card border border-border/80 px-4 py-2.5 text-xs text-foreground shadow-lg backdrop-blur-md hover:border-olive transition-all duration-300"
           >
-            <span className="text-[0.68rem] tracking-wider uppercase font-medium hidden sm:inline">
-              Canlı Bütçe Hesapla
+            <span className="text-[0.68rem] tracking-wider uppercase font-semibold hidden sm:inline">
+              Paket & Konsept Planla
             </span>
             <span className="size-8 rounded-full bg-olive/15 text-olive flex items-center justify-center group-hover:bg-olive group-hover:text-olive-foreground transition-colors">
-              <Calculator className="size-4" />
+              <Sliders className="size-4" />
             </span>
           </a>
 
@@ -35,7 +35,7 @@ export function FloatingActionBar() {
             href={`tel:${phone.replace(/\s+/g, '')}`}
             className="group flex items-center gap-2.5 rounded-full bg-card border border-border/80 px-4 py-2.5 text-xs text-foreground shadow-lg backdrop-blur-md hover:border-olive transition-all duration-300"
           >
-            <span className="text-[0.68rem] tracking-wider uppercase font-medium hidden sm:inline">
+            <span className="text-[0.68rem] tracking-wider uppercase font-semibold hidden sm:inline">
               Hemen Ara: {phone}
             </span>
             <span className="size-8 rounded-full bg-amber-500/15 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
@@ -48,7 +48,7 @@ export function FloatingActionBar() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 text-xs font-medium shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="group flex items-center gap-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 text-xs font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <MessageCircle className="size-5 fill-current" />
             <span className="tracking-wider uppercase text-[0.7rem]">

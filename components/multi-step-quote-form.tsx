@@ -5,17 +5,37 @@ import { CheckCircle2, ChevronRight, ChevronLeft, Send, MessageCircle, Calendar,
 import { Reveal } from '@/components/reveal'
 import { cn } from '@/lib/utils'
 
+const SERVICE_TYPES = [
+  'Düğün Organizasyonu',
+  'Kına Gecesi',
+  'Söz & Nişan Organizasyonu',
+  'Bride Party',
+  'Doğum Günü',
+  'Açılış Organizasyonu',
+  'Masa Sandalye Kiralama',
+  'Özel Gün & Davet',
+]
+
+const CITIES = [
+  'Nevşehir (Merkez & İlçeler)',
+  'Ürgüp & Göreme (Kapadokya)',
+  'Kayseri',
+  'Aksaray',
+  'Niğde',
+  'Kırşehir',
+]
+
 export function MultiStepQuoteForm() {
   const [step, setStep] = useState<number>(1)
   const [submitted, setSubmitted] = useState<boolean>(false)
   const [referenceCode, setReferenceCode] = useState<string>('')
 
   const [formData, setFormData] = useState({
-    eventType: 'Söz & Nişan',
-    city: 'Nevşehir',
+    eventType: 'Düğün Organizasyonu',
+    city: 'Nevşehir (Merkez & İlçeler)',
     date: '',
-    guests: '50-100 Kişi',
-    venue: 'Ev / Bahçe',
+    guests: '100-200 Kişi',
+    venue: 'Kır Bahçesi / Açık Hava',
     name: '',
     phone: '',
     email: '',
@@ -46,7 +66,7 @@ export function MultiStepQuoteForm() {
 
 • Ad Soyad: ${formData.name}
 • Telefon: ${formData.phone}
-• Etkinlik Türü: ${formData.eventType}
+• Hizmet Türü: ${formData.eventType}
 • Şehir/Bölge: ${formData.city}
 • Tahmini Tarih: ${formData.date || 'Belirtilmedi'}
 • Davetli Sayısı: ${formData.guests}
@@ -62,12 +82,12 @@ Katalog ve detaylı teklifinizi bekliyorum.`
     <section id="hizli-teklif" className="px-5 py-24 sm:px-8 sm:py-32 bg-background relative">
       <div className="mx-auto max-w-4xl">
         <Reveal className="text-center max-w-2xl mx-auto">
-          <span className="font-script text-olive text-3xl italic">3 Adımda Hızlı Fiyat Alın</span>
+          <span className="font-script text-olive text-3xl italic">3 Adımda Hızlı Teklif Alın</span>
           <h2 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl">
             Özel Teklif Formu
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Uzun formlarla vakit kaybetmeyin. 1 dakikada organizasyon bilgilerinizi seçin, size özel detaylı teklifimizi anında iletelim.
+            1 dakikada organizasyon bilgilerinizi seçin, size ve mekanınıza özel detaylı konsept teklifimizi anında iletelim.
           </p>
         </Reveal>
 
@@ -99,7 +119,7 @@ Katalog ve detaylı teklifinizi bekliyorum.`
                 Referans No: <span className="text-olive">{referenceCode}</span>
               </p>
               <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
-                Teşekkür ederiz! Organizasyon ekibimiz bilgilerinizi inceleyerek en geç 2 saat içerisinde size dönüş yapacaktır.
+                Teşekkür ederiz! Farah Organizasyon ekibimiz bilgilerinizi inceleyerek en kısa sürede sizinle iletişime geçecektir.
               </p>
 
               <div className="mt-8 space-y-3">
@@ -130,19 +150,19 @@ Katalog ve detaylı teklifinizi bekliyorum.`
               {step === 1 && (
                 <div className="space-y-6 animate-in fade-in duration-300">
                   <div>
-                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-3 font-medium">
-                      Organizasyon Türü
+                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-3 font-semibold">
+                      Organizasyon Hizmeti Seçin
                     </label>
-                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                      {['Söz & Nişan', 'Kına Gecesi', 'Düğün & Kır Düğünü', 'Kapadokya Teklifi'].map((type) => (
+                    <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+                      {SERVICE_TYPES.map((type) => (
                         <button
                           key={type}
                           type="button"
                           onClick={() => updateField('eventType', type)}
                           className={cn(
-                            'p-4 rounded-2xl border text-center text-xs font-medium transition-all duration-200',
+                            'p-3.5 rounded-2xl border text-center text-xs font-medium transition-all duration-200',
                             formData.eventType === type
-                              ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive'
+                              ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive font-semibold'
                               : 'border-border/60 hover:border-olive/50 bg-background/50 text-muted-foreground'
                           )}
                         >
@@ -152,22 +172,21 @@ Katalog ve detaylı teklifinizi bekliyorum.`
                     </div>
                   </div>
 
-                  <div>
-                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-3 font-medium flex items-center gap-1">
-                      <MapPin className="size-3.5 text-olive" />
-                      <span>Hangi Şehir / İlçede Yapılacak?</span>
+                  <div className="pt-4 border-t border-border/60">
+                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-3 font-semibold">
+                      Etkinlik Bölgesi / Şehir
                     </label>
-                    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                      {['Nevşehir Merkez', 'Ürgüp & Göreme', 'Kayseri', 'Aksaray', 'Niğde', 'Kırşehir'].map((c) => (
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                      {CITIES.map((c) => (
                         <button
                           key={c}
                           type="button"
                           onClick={() => updateField('city', c)}
                           className={cn(
-                            'p-3 rounded-xl border text-xs text-left transition-all duration-200',
+                            'p-3 rounded-xl border text-xs text-center transition-all duration-200',
                             formData.city === c
-                              ? 'border-olive bg-olive text-olive-foreground font-medium'
-                              : 'border-border/60 hover:border-border bg-background/50 text-foreground/80'
+                              ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive font-semibold'
+                              : 'border-border/60 hover:border-olive/50 bg-background/50 text-muted-foreground'
                           )}
                         >
                           {c}
@@ -175,59 +194,69 @@ Katalog ve detaylı teklifinizi bekliyorum.`
                       ))}
                     </div>
                   </div>
+
+                  <div className="pt-4 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="bg-olive text-olive-foreground hover:bg-olive/90 rounded-full px-8 py-3.5 text-xs uppercase tracking-widest font-medium inline-flex items-center gap-2 transition-colors duration-300"
+                    >
+                      <span>Devam Et</span>
+                      <ChevronRight className="size-4" />
+                    </button>
+                  </div>
                 </div>
               )}
 
               {/* STEP 2 */}
               {step === 2 && (
                 <div className="space-y-6 animate-in fade-in duration-300">
-                  <div className="grid gap-6 sm:grid-cols-2">
+                  <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="form-date" className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium flex items-center gap-1.5">
-                        <Calendar className="size-3.5 text-olive" />
-                        <span>Tahmini Etkinlik Tarihi</span>
+                      <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-semibold">
+                        Tahmini Etkinlik Tarihi
                       </label>
                       <input
-                        id="form-date"
                         type="date"
                         value={formData.date}
                         onChange={(e) => updateField('date', e.target.value)}
-                        className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors"
+                        className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive"
                       />
                     </div>
 
                     <div>
-                      <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium">
-                        Davetli Sayısı
+                      <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-semibold">
+                        Tahmini Davetli Sayısı
                       </label>
                       <select
                         value={formData.guests}
                         onChange={(e) => updateField('guests', e.target.value)}
-                        className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors"
+                        className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive"
                       >
-                        <option value="10-30 Kişi (Butik Ev/Teras)">10-30 Kişi (Butik Ev/Teras)</option>
-                        <option value="50-100 Kişi (Nişan/Kına)">50-100 Kişi (Nişan/Kına)</option>
-                        <option value="100-250 Kişi (Orta Ölçek Salon/Bahçe)">100-250 Kişi (Orta Ölçek Salon/Bahçe)</option>
-                        <option value="250-500+ Kişi (Görkemli Düğün)">250-500+ Kişi (Görkemli Düğün)</option>
+                        <option value="20-50 Kişi (Butik)">20-50 Kişi (Butik)</option>
+                        <option value="50-100 Kişi">50-100 Kişi</option>
+                        <option value="100-200 Kişi">100-200 Kişi</option>
+                        <option value="200-350 Kişi">200-350 Kişi</option>
+                        <option value="350-500+ Kişi">350-500+ Kişi</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-3 font-medium">
+                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-semibold">
                       Mekan Türü
                     </label>
-                    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-                      {['Ev / Bahçe', 'Düğün Salonu', 'Kapadokya Vadisi', 'Cave Otel Terası'].map((v) => (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {['Ev / Salon İçi', 'Bahçe / Kır Alanı', 'Düğün / Davet Salonu', 'Teras / Açık Hava'].map((v) => (
                         <button
                           key={v}
                           type="button"
                           onClick={() => updateField('venue', v)}
                           className={cn(
-                            'p-3 rounded-xl border text-xs text-center font-medium transition-all duration-200',
+                            'p-3 rounded-xl border text-xs text-center transition-all duration-200',
                             formData.venue === v
-                              ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive'
-                              : 'border-border/60 hover:border-border bg-background/50 text-muted-foreground'
+                              ? 'border-olive bg-olive/10 text-foreground ring-1 ring-olive font-semibold'
+                              : 'border-border/60 hover:border-olive/50 bg-background/50 text-muted-foreground'
                           )}
                         >
                           {v}
@@ -235,111 +264,105 @@ Katalog ve detaylı teklifinizi bekliyorum.`
                       ))}
                     </div>
                   </div>
+
+                  <div className="pt-4 flex justify-between">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="border border-border hover:bg-muted text-muted-foreground rounded-full px-6 py-3 text-xs uppercase tracking-widest transition-colors duration-200 inline-flex items-center gap-1.5"
+                    >
+                      <ChevronLeft className="size-4" />
+                      <span>Geri</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="bg-olive text-olive-foreground hover:bg-olive/90 rounded-full px-8 py-3.5 text-xs uppercase tracking-widest font-medium inline-flex items-center gap-2 transition-colors duration-300"
+                    >
+                      <span>Devam Et</span>
+                      <ChevronRight className="size-4" />
+                    </button>
+                  </div>
                 </div>
               )}
 
               {/* STEP 3 */}
               {step === 3 && (
                 <div className="space-y-5 animate-in fade-in duration-300">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="form-name" className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium flex items-center gap-1.5">
-                        <User className="size-3.5 text-olive" />
-                        <span>Adınız Soyadınız *</span>
-                      </label>
-                      <input
-                        id="form-name"
-                        type="text"
-                        required
-                        placeholder="Örn: Ayşe Yılmaz"
-                        value={formData.name}
-                        onChange={(e) => updateField('name', e.target.value)}
-                        className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors"
-                      />
-                    </div>
+                  <div>
+                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-1.5 font-semibold">
+                      Adınız Soyadınız *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Örn: Ayşe Yılmaz"
+                      value={formData.name}
+                      onChange={(e) => updateField('name', e.target.value)}
+                      className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive"
+                    />
+                  </div>
 
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="form-phone" className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium flex items-center gap-1.5">
-                        <Phone className="size-3.5 text-olive" />
-                        <span>Telefon Numarası *</span>
+                      <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-1.5 font-semibold">
+                        Telefon Numaranız *
                       </label>
                       <input
-                        id="form-phone"
                         type="tel"
                         required
                         placeholder="05XX XXX XX XX"
                         value={formData.phone}
                         onChange={(e) => updateField('phone', e.target.value)}
-                        className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors"
+                        className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-1.5 font-semibold">
+                        E-Posta Adresiniz (Opsiyonel)
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="ornek@mail.com"
+                        value={formData.email}
+                        onChange={(e) => updateField('email', e.target.value)}
+                        className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="form-email" className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium flex items-center gap-1.5">
-                      <Mail className="size-3.5 text-olive" />
-                      <span>E-posta Adresi (İsteğe Bağlı)</span>
+                    <label className="text-xs uppercase tracking-widest text-muted-foreground block mb-1.5 font-semibold">
+                      İlave İstekleriniz & Konsept Notları
                     </label>
-                    <input
-                      id="form-email"
-                      type="email"
-                      placeholder="ornek@mail.com"
-                      value={formData.email}
-                      onChange={(e) => updateField('email', e.target.value)}
-                      className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors"
+                    <textarea
+                      rows={3}
+                      placeholder="Özel konsept talepleriniz, renk tercihiniz veya ekipman ihtiyaçlarınızı belirtebilirsiniz..."
+                      value={formData.notes}
+                      onChange={(e) => updateField('notes', e.target.value)}
+                      className="w-full bg-background border border-border/80 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-olive resize-none"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="form-notes" className="text-xs uppercase tracking-widest text-muted-foreground block mb-2 font-medium">
-                      Özel İstekleriniz / Hayal Ettiğiniz Konsept
-                    </label>
-                    <textarea
-                      id="form-notes"
-                      rows={3}
-                      placeholder="İstediğiniz renk paleti, ekletmek istediğiniz bando/drone vb. aksesuarlar..."
-                      value={formData.notes}
-                      onChange={(e) => updateField('notes', e.target.value)}
-                      className="w-full bg-background border border-border/80 rounded-xl p-3 text-sm text-foreground outline-none focus:border-olive transition-colors resize-none"
-                    />
+                  <div className="pt-4 flex justify-between items-center">
+                    <button
+                      type="button"
+                      onClick={handleBack}
+                      className="border border-border hover:bg-muted text-muted-foreground rounded-full px-6 py-3 text-xs uppercase tracking-widest transition-colors duration-200 inline-flex items-center gap-1.5"
+                    >
+                      <ChevronLeft className="size-4" />
+                      <span>Geri</span>
+                    </button>
+                    <button
+                      type="submit"
+                      className="bg-olive text-olive-foreground hover:bg-olive/90 rounded-full px-10 py-4 text-xs uppercase tracking-widest font-semibold inline-flex items-center gap-2 transition-colors duration-300 shadow-md"
+                    >
+                      <span>Teklif Talebini Gönder</span>
+                      <Send className="size-4" />
+                    </button>
                   </div>
                 </div>
               )}
-
-              {/* Navigation Buttons */}
-              <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-6">
-                {step > 1 ? (
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    className="inline-flex items-center gap-2 border border-border px-5 py-2.5 rounded-full text-xs uppercase tracking-widest hover:bg-muted transition-colors"
-                  >
-                    <ChevronLeft className="size-4" />
-                    <span>Geri</span>
-                  </button>
-                ) : (
-                  <div />
-                )}
-
-                {step < 3 ? (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-2 px-7 py-3 rounded-full text-xs uppercase tracking-widest transition-colors duration-300 ml-auto"
-                  >
-                    <span>Devam Et</span>
-                    <ChevronRight className="size-4" />
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-2 px-9 py-3.5 rounded-full text-xs uppercase tracking-widest font-medium transition-colors duration-300 shadow-md ml-auto"
-                  >
-                    <span>Teklifi Oluştur & Gönder</span>
-                    <Send className="size-4" />
-                  </button>
-                )}
-              </div>
             </form>
           )}
         </Reveal>
