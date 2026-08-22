@@ -25,7 +25,7 @@ const ADDONS: AddonOption[] = [
 const CITIES = [
   { id: 'nevsehir', name: 'Nevşehir (Merkez & İlçeler)' },
   { id: 'urgup', name: 'Ürgüp & Göreme (Kapadokya)' },
-  { id: 'kayseri', name: 'Kayseri' },
+  { id: 'avanos', name: 'Avanos & Uçhisar' },
   { id: 'aksaray', name: 'Aksaray' },
   { id: 'nigde', name: 'Niğde' },
   { id: 'kirsehir', name: 'Kırşehir' },

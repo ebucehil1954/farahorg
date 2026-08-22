@@ -25,22 +25,24 @@ const cormorant = Cormorant_Upright({
 export const metadata: Metadata = {
   title: 'Nevşehir & Kapadokya Düğün, Nişan, Kına Organizasyonu | Farah Organizasyon',
   description:
-    'Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir bölgesi için lüks nişan masaları, kına tahtları, kır düğünleri ve vadide evlilik teklifi organizasyon hizmeti.',
+    'Nevşehir, Kapadokya, Ürgüp, Göreme, Avanos, Aksaray, Niğde ve Kırşehir bölgesi için lüks nişan masaları, kına tahtları, kır düğünleri ve vadide evlilik teklifi organizasyon hizmeti.',
   generator: 'v0.app',
   keywords: [
     'Nevşehir Düğün Organizasyonu',
     'Kapadokya Evlilik Teklifi',
     'Ürgüp Kına Tahtı Kiralama',
-    'Kayseri Nişan Masası',
-    'Aksaray Kır Düğünü',
-    'Niğde Organizasyon Firmaları',
+    'Nevşehir Nişan Masası',
+    'Göreme Kır Düğünü',
+    'Avanos Organizasyon Firmaları',
+    'Aksaray Organizasyon',
+    'Niğde Kına Gecesi',
     'Göreme Mağara Otel Teras Süsleme',
     'Farah Organizasyon',
   ],
   openGraph: {
     title: 'Nevşehir & Kapadokya Düğün, Nişan, Kına | Farah Organizasyon',
     description:
-      'Nevşehir ve Kapadokya bölgesinin lider düğün, kına ve nişan organizasyon firması. Canlı paket fiyat simülatörü ve şeffaf paket içerikleri.',
+      'Nevşehir ve Kapadokya bölgesinin lider düğün, kına ve nişan organizasyon firması. Kişiye özel teklif sihirbazı ve şeffaf paket içerikleri.',
     type: 'website',
     locale: 'tr_TR',
   },

@@ -19,37 +19,26 @@ const CATEGORY_OPTIONS = [
   { slug: 'ozel-gun-davet', title: 'Özel Gün & Davet' },
 ]
 
-const COLOR_OPTIONS = [
-  { slug: 'all', title: 'Tüm Renkler' },
-  { slug: 'altin', title: 'Altın & Gold' },
-  { slug: 'gumus', title: 'Gümüş' },
-  { slug: 'ahsap', title: 'Ahşap & Doğal' },
-  { slug: 'pembe', title: 'Pembe & Pudra' },
-  { slug: 'krem', title: 'Krem & Boho' },
-]
-
 const VENUE_OPTIONS = [
   { slug: 'all', title: 'Tüm Mekanlar' },
-  { slug: 'ev', title: 'Ev İçi / Salon' },
+  { slug: 'ev', title: 'Ev İçi / Butik Salon' },
   { slug: 'bahce', title: 'Bahçe / Kır Alanı' },
   { slug: 'salon', title: 'Balo / Düğün Salonu' },
-  { slug: 'teras', title: 'Teras / Açık Hava' },
+  { slug: 'teras', title: 'Teras / Mağara / Açık Hava' },
 ]
 
 export function FilterableCatalog() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [selectedColor, setSelectedColor] = useState<string>('all')
   const [selectedVenue, setSelectedVenue] = useState<string>('all')
   const [activeItem, setActiveItem] = useState<CatalogImageItem | null>(null)
 
   const filteredItems = useMemo(() => {
     return ALL_GALLERY_IMAGES.filter((item) => {
       const matchCategory = selectedCategory === 'all' || item.categorySlug === selectedCategory
-      const matchColor = selectedColor === 'all' || item.colorTheme === selectedColor
       const matchVenue = selectedVenue === 'all' || item.venueType === selectedVenue
-      return matchCategory && matchColor && matchVenue
+      return matchCategory && matchVenue
     })
-  }, [selectedCategory, selectedColor, selectedVenue])
+  }, [selectedCategory, selectedVenue])
 
   const openWhatsAppForItem = (item: CatalogImageItem) => {
     const text = `Merhaba Farah Organizasyon! Kataloğunuzda yer alan "${item.title}" (${item.categoryName} - ${item.location}) konseptiniz hakkında detaylı teklif ve tarih müsaitliği almak istiyorum.`
@@ -57,37 +46,38 @@ export function FilterableCatalog() {
   }
 
   return (
-    <section id="katalog" className="px-5 py-24 sm:px-8 sm:py-32 bg-background">
+    <section id="katalog" className="px-5 py-20 sm:px-8 sm:py-28 bg-background">
       <div className="mx-auto max-w-7xl">
         <Reveal className="text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-1.5 text-xs text-olive uppercase tracking-widest font-medium mb-4">
             <Filter className="size-3.5" />
-            <span>Filtrelenebilir Konsept & Hizmet Kataloğu</span>
+            <span>Filtrelenebilir Konsept & Ekipman Kataloğu</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">
             Tasarım Kataloğumuzu Keşfedin
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Düğün, kına, nişan masaları, açılış, bride party ve doğum günü setups'larımızı kategoriye, renge ve mekana göre süzün; nelerin dahil olduğunu şeffafça inceleyin.
+            Düğün, kına, nişan masaları, açılış, bride party ve doğum günü konseptlerimizi kategoriye ve mekana göre süzün; nelerin dahil olduğunu şeffafça inceleyin.
           </p>
         </Reveal>
 
         {/* Filter Controls Bar */}
-        <Reveal delay={100} className="mt-12 bg-card border border-border/80 rounded-3xl p-6 shadow-sm space-y-5">
+        <Reveal delay={100} className="mt-12 bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
           {/* 1. Category Filter */}
           <div>
-            <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
-              Hizmet Kategorisi
+            <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-3">
+              1. Hizmet Kategorisi Seçin
             </span>
             <div className="flex flex-wrap gap-2">
               {CATEGORY_OPTIONS.map((cat) => (
                 <button
                   key={cat.slug}
+                  type="button"
                   onClick={() => setSelectedCategory(cat.slug)}
                   className={cn(
                     'rounded-full px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200 font-medium',
                     selectedCategory === cat.slug
-                      ? 'bg-olive text-olive-foreground font-semibold shadow-sm'
+                      ? 'bg-olive text-olive-foreground font-semibold shadow-sm ring-2 ring-olive/40'
                       : 'bg-background border border-border/70 text-muted-foreground hover:border-olive/50 hover:text-foreground'
                   )}
                 >
@@ -97,69 +87,45 @@ export function FilterableCatalog() {
             </div>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 pt-4 border-t border-border/60">
-            {/* 2. Color Theme Filter */}
-            <div>
-              <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
-                Renk Teması
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {COLOR_OPTIONS.map((col) => (
-                  <button
-                    key={col.slug}
-                    onClick={() => setSelectedColor(col.slug)}
-                    className={cn(
-                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200 font-medium',
-                      selectedColor === col.slug
-                        ? 'bg-foreground text-background font-semibold'
-                        : 'bg-background border border-border/70 text-muted-foreground hover:text-foreground'
-                    )}
-                  >
-                    {col.title}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 3. Venue Filter */}
-            <div>
-              <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-2.5">
-                Mekan Türü
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {VENUE_OPTIONS.map((ven) => (
-                  <button
-                    key={ven.slug}
-                    onClick={() => setSelectedVenue(ven.slug)}
-                    className={cn(
-                      'rounded-full px-3.5 py-1.5 text-[0.7rem] uppercase tracking-wider transition-all duration-200 font-medium',
-                      selectedVenue === ven.slug
-                        ? 'bg-foreground text-background font-semibold'
-                        : 'bg-background border border-border/70 text-muted-foreground hover:text-foreground'
-                    )}
-                  >
-                    {ven.title}
-                  </button>
-                ))}
-              </div>
+          {/* 2. Venue Filter */}
+          <div className="pt-5 border-t border-border/60">
+            <span className="text-[0.68rem] uppercase tracking-widest text-muted-foreground font-semibold block mb-3">
+              2. Mekan Türüne Göre Filtreleyin
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {VENUE_OPTIONS.map((ven) => (
+                <button
+                  key={ven.slug}
+                  type="button"
+                  onClick={() => setSelectedVenue(ven.slug)}
+                  className={cn(
+                    'rounded-full px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200 font-medium',
+                    selectedVenue === ven.slug
+                      ? 'bg-foreground text-background font-semibold shadow-sm'
+                      : 'bg-background border border-border/70 text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  {ven.title}
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Active Filter Count & Reset */}
-          <div className="flex items-center justify-between text-xs text-muted-foreground pt-3 border-t border-border/40">
+          <div className="flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border/40">
             <span>
-              Toplam <strong className="text-foreground">{filteredItems.length}</strong> konsept görseli listeleniyor
+              Toplam <strong className="text-foreground">{filteredItems.length}</strong> konsept tasarımı listeleniyor
             </span>
-            {(selectedCategory !== 'all' || selectedColor !== 'all' || selectedVenue !== 'all') && (
+            {(selectedCategory !== 'all' || selectedVenue !== 'all') && (
               <button
+                type="button"
                 onClick={() => {
                   setSelectedCategory('all')
-                  setSelectedColor('all')
                   setSelectedVenue('all')
                 }}
                 className="text-olive hover:underline font-semibold text-xs"
               >
-                Filtreleri Temizle
+                Filtreleri Sıfırla
               </button>
             )}
           </div>
@@ -168,10 +134,10 @@ export function FilterableCatalog() {
         {/* Gallery Image Grid */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item, idx) => (
-            <Reveal key={item.id} delay={idx * 50} className="group">
+            <Reveal key={item.id} delay={idx * 40} className="group">
               <div
                 onClick={() => setActiveItem(item)}
-                className="bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+                className="bg-card border border-border/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between h-full hover:border-olive/50"
               >
                 <div className="relative aspect-4/3 overflow-hidden bg-muted">
                   <Image
@@ -184,7 +150,7 @@ export function FilterableCatalog() {
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="bg-white/95 text-foreground px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest backdrop-blur-sm inline-flex items-center gap-1.5 shadow-lg">
                       <Eye className="size-3.5" />
-                      <span>Detayları Gör</span>
+                      <span>Detayları İncele</span>
                     </span>
                   </div>
                   <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-champagne text-[0.62rem] uppercase tracking-widest px-3 py-1 rounded-full font-medium">
@@ -232,12 +198,12 @@ export function FilterableCatalog() {
         </div>
 
         {filteredItems.length === 0 && (
-          <div className="py-16 text-center text-muted-foreground">
+          <div className="py-16 text-center text-muted-foreground bg-card border border-border/70 rounded-3xl mt-8">
             <p>Seçilen filtrelere uygun konsept bulunamadı.</p>
             <button
+              type="button"
               onClick={() => {
                 setSelectedCategory('all')
-                setSelectedColor('all')
                 setSelectedVenue('all')
               }}
               className="mt-3 text-olive underline text-xs font-semibold"
@@ -254,6 +220,7 @@ export function FilterableCatalog() {
           <div className="bg-card border border-border rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col animate-in zoom-in-95 duration-300">
             {/* Close button */}
             <button
+              type="button"
               onClick={() => setActiveItem(null)}
               className="absolute top-4 right-4 z-10 size-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
             >
@@ -319,9 +286,10 @@ export function FilterableCatalog() {
                 {/* WhatsApp Action Button */}
                 <div className="mt-8 pt-5 border-t border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <span className="text-xs text-muted-foreground">
-                    * Nevşehir ve tüm çevre illerde yerinde kurulum yapılmaktadır.
+                    * Nevşehir, Kapadokya ve çevre illerde yerinde kurulum yapılmaktadır.
                   </span>
                   <button
+                    type="button"
                     onClick={() => openWhatsAppForItem(activeItem)}
                     className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-3.5 px-8 text-xs uppercase tracking-widest font-semibold inline-flex items-center justify-center gap-2.5 transition-colors shadow-md"
                   >

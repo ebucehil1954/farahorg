@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Star, MapPin, CheckCircle2, Instagram, Heart } from 'lucide-react'
+import { Star, MapPin, CheckCircle2, Heart } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { InstagramIcon } from '@/components/instagram-icon'
 
@@ -54,7 +54,7 @@ const TESTIMONIALS: Testimonial[] = [
     id: '4',
     name: 'Zeynep & Caner D.',
     event: 'Butik Ev Nişanı',
-    location: 'Kayseri',
+    location: 'Nevşehir',
     rating: 5,
     date: 'Nisan 2026',
     comment:
@@ -87,7 +87,7 @@ export function SocialProofTestimonials() {
             Mutluluğuna Tanık Olduğumuz Çiftlerimiz
           </h2>
           <p className="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
-            Nevşehir, Kapadokya, Kayseri ve Aksaray'da organizasyonlarını üstlendiğimiz yüzlerce mutlu çiftin gerçek deneyimleri.
+            Nevşehir, Kapadokya, Aksaray ve çevre illerde organizasyonlarını üstlendiğimiz yüzlerce mutlu çiftin gerçek deneyimleri.
           </p>
         </Reveal>
 

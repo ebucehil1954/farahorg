@@ -141,7 +141,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     galleryImages: [
       { src: '/images/raw/img-4.jpeg', alt: 'Düğün seremonisi alanı', title: 'Kır Düğünü Kurgusu', location: 'Nevşehir' },
       { src: '/images/raw/img-5.jpeg', alt: 'Düğün masa düzeni', title: 'Açık Hava Düğün Masası', location: 'Ürgüp' },
-      { src: '/images/raw/img-11.jpeg', alt: 'Şamdanlı gala masası', title: 'Balo Salonu Düğünü', location: 'Kayseri' },
+      { src: '/images/raw/img-11.jpeg', alt: 'Şamdanlı gala masası', title: 'Balo Salonu Düğünü', location: 'Nevşehir' },
       { src: '/images/raw/img-13.jpeg', alt: 'Işıklı kır düğünü', title: 'Gece Işıklandırmalı Düğün', location: 'Aksaray' },
     ],
     faq: [
@@ -250,7 +250,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     galleryImages: [
       { src: '/images/raw/img-21.jpeg', alt: 'Kına tahtı', title: 'Kırmızı Konsept Kına Tahtı', location: 'Nevşehir' },
-      { src: '/images/raw/img-16.jpeg', alt: 'Bordo kına konsepti', title: 'Bordo Kına Tahtı & Fon', location: 'Kayseri' },
+      { src: '/images/raw/img-16.jpeg', alt: 'Bordo kına konsepti', title: 'Bordo Kına Tahtı & Fon', location: 'Nevşehir' },
       { src: '/images/raw/img-22.jpeg', alt: 'Kına masası ve aksesuarlar', title: 'Geleneksel Kına Süslemesi', location: 'Ürgüp' },
       { src: '/images/raw/img-23.jpeg', alt: 'Beyaz cibinlik kına', title: 'Beyaz Kına Konsepti', location: 'Aksaray' },
     ],
@@ -352,7 +352,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     galleryImages: [
       { src: '/images/raw/img-1.jpeg', alt: 'Modern nişan fonu', title: 'Pleksi Tag Nişan', location: 'Nevşehir' },
       { src: '/images/raw/img-2.jpeg', alt: 'Ahşap nişan masası', title: 'Boho Ahşap Söz Masası', location: 'Ürgüp' },
-      { src: '/images/raw/img-6.jpeg', alt: 'Butik ev sözü', title: 'Evde Zarif Söz Masası', location: 'Kayseri' },
+      { src: '/images/raw/img-6.jpeg', alt: 'Butik ev sözü', title: 'Evde Zarif Söz Masası', location: 'Nevşehir' },
       { src: '/images/raw/img-8.jpeg', alt: 'Bahçe nişanı', title: 'Doğada Bahçe Nişanı', location: 'Aksaray' },
     ],
     faq: [
@@ -537,7 +537,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     galleryImages: [
       { src: '/images/raw/img-9.jpeg', alt: 'Işıklı doğum günü masası', title: 'Işıltılı Doğum Günü', location: 'Nevşehir' },
-      { src: '/images/raw/img-3.jpeg', alt: 'Pastel balon doğum günü', title: 'Pastel Balonlu Kutlama', location: 'Kayseri' },
+      { src: '/images/raw/img-3.jpeg', alt: 'Pastel balon doğum günü', title: 'Pastel Balonlu Kutlama', location: 'Ürgüp' },
       { src: '/images/raw/img-7.jpeg', alt: 'Gümüş & ayna masa konsepti', title: 'Yetişkin Doğum Günü', location: 'Ürgüp' },
     ],
     faq: [
@@ -632,7 +632,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     galleryImages: [
       { src: '/images/raw/img-24.jpeg', alt: 'Açılış organizasyonu alanı', title: 'Kurumsal Açılış Töreni', location: 'Nevşehir Merkez' },
-      { src: '/images/raw/img-1.jpeg', alt: 'Açılış kokteyl masaları', title: 'Bistro Masa Düzeni', location: 'Kayseri' },
+      { src: '/images/raw/img-1.jpeg', alt: 'Açılış kokteyl masaları', title: 'Bistro Masa Düzeni', location: 'Nevşehir' },
       { src: '/images/raw/img-11.jpeg', alt: 'Gala açılış yemeği', title: 'Açılış Kokteyl & Davet', location: 'Aksaray' },
     ],
     faq: [
@@ -740,7 +740,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     galleryImages: [
       { src: '/images/raw/img-5.jpeg', alt: 'Masa sandalye düzeni', title: 'Kır Bahçesi Masa Düzeni', location: 'Nevşehir' },
-      { src: '/images/raw/img-11.jpeg', alt: 'Napolyon sandalye ve şamdan', title: 'Gala Masa & Sandalye', location: 'Kayseri' },
+      { src: '/images/raw/img-11.jpeg', alt: 'Napolyon sandalye ve şamdan', title: 'Gala Masa & Sandalye', location: 'Nevşehir' },
       { src: '/images/raw/img-13.jpeg', alt: 'Bistro ve ziyafet masaları', title: 'Dış Mekan Ziyafet Düzeni', location: 'Ürgüp' },
     ],
     faq: [
@@ -846,7 +846,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     galleryImages: [
       { src: '/images/raw/img-19.jpeg', alt: 'Özel gün yemek masası', title: 'Mezuniyet & Kurumsal Gala', location: 'Nevşehir' },
       { src: '/images/raw/img-10.jpeg', alt: 'Özel anlar kutlama masası', title: 'Yıldönümü & Butik Davet', location: 'Kapadokya' },
-      { src: '/images/raw/img-7.jpeg', alt: 'Aynalı davet masası', title: 'Özel Kutlama Masası', location: 'Kayseri' },
+      { src: '/images/raw/img-7.jpeg', alt: 'Aynalı davet masası', title: 'Özel Kutlama Masası', location: 'Nevşehir' },
     ],
     faq: [
       {
@@ -897,7 +897,7 @@ export const ALL_GALLERY_IMAGES: CatalogImageItem[] = [
     categoryName: 'DOĞUM GÜNÜ',
     colorTheme: 'pembe',
     venueType: 'salon',
-    location: 'Kayseri',
+    location: 'Ürgüp',
     includedItems: ['Balon Kemeri', 'Pasta Masası', 'Yaş & İsim Dekoru', 'Karşılama Panosu'],
     optionalItems: ['Fotoğraf Video Çekimi'],
   },
@@ -949,7 +949,7 @@ export const ALL_GALLERY_IMAGES: CatalogImageItem[] = [
     categoryName: 'ÖZEL GÜN & DAVET',
     colorTheme: 'gumus',
     venueType: 'salon',
-    location: 'Kayseri',
+    location: 'Nevşehir',
     includedItems: ['Masa & Sandalye Düzenlemesi', 'Masa Servis Ekipmanları', 'Karşılama Panosu'],
     optionalItems: ['DJ & Ses Sistemi'],
   },
@@ -1001,7 +1001,7 @@ export const ALL_GALLERY_IMAGES: CatalogImageItem[] = [
     categoryName: 'DÜĞÜN',
     colorTheme: 'altin',
     venueType: 'salon',
-    location: 'Kayseri',
+    location: 'Nevşehir',
     includedItems: ['Gelin & Damat Masa Süslemesi', 'Misafir Giydirmeleri', 'Şamdanlar & Vazolar', 'DJ & Ses'],
     optionalItems: ['Sis Bulutu', 'Fotoğraf Çekimi'],
   },
@@ -1079,7 +1079,7 @@ export const ALL_GALLERY_IMAGES: CatalogImageItem[] = [
     categoryName: 'KINA GECESİ',
     colorTheme: 'pembe',
     venueType: 'salon',
-    location: 'Kayseri',
+    location: 'Göreme',
     includedItems: ['Kına Tahtı', 'Masa Sandalye Süslemeleri', 'Mumluk / Şamdan', 'Hoş Geldiniz Panosu'],
     optionalItems: ['El Gülü & Testi'],
   },
@@ -1144,7 +1144,7 @@ export const ALL_GALLERY_IMAGES: CatalogImageItem[] = [
     categoryName: 'KINA GECESİ',
     colorTheme: 'altin',
     venueType: 'salon',
-    location: 'Kayseri',
+    location: 'Avanos',
     includedItems: ['Karşılama Panosu', 'Masa Süslemesi', 'Mumluk / Şamdan'],
     optionalItems: ['Misafire Dağıtılacak Kına'],
   },

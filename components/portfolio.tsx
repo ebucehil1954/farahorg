@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Eye } from 'lucide-react'
+import { ArrowRight, Eye, Sparkles, MapPin } from 'lucide-react'
 
 import { Reveal } from '@/components/reveal'
 import { ImageLightbox } from '@/components/image-lightbox'
@@ -13,20 +13,20 @@ const works = [
     image: '/images/raw/img-4.jpeg',
     alt: 'Kır düğününde taze çiçekler ve mumlarla bezenmiş ziyafet masası',
     title: 'Kır Düğünü Seremonisi',
-    place: 'Göreme, Nevşehir',
+    place: 'Göreme, Kapadokya',
     category: 'Düğün',
   },
   {
     image: '/images/raw/img-1.jpeg',
     alt: 'Pleksi fonlu modern nişan masası dekorasyonu',
-    title: 'Şampanya Nişan Fonu',
+    title: 'Şampanya Pleksi Nişan Fonu',
     place: 'Nevşehir Merkez',
     category: 'Söz & Nişan',
   },
   {
     image: '/images/raw/img-21.jpeg',
     alt: 'Kırmızı kadife taht ve kına gecesi dekoru',
-    title: 'Saray Kına Gecesi',
+    title: 'Saray Kına Gecesi Tahtı',
     place: 'Aksaray',
     category: 'Kına Gecesi',
   },
@@ -34,14 +34,14 @@ const works = [
     image: '/images/raw/img-12.jpeg',
     alt: 'Bride to be parti masası',
     title: 'Bride Party Kutlama Alanı',
-    place: 'Göreme, Nevşehir',
+    place: 'Ürgüp, Kapadokya',
     category: 'Bride Party',
   },
   {
     image: '/images/raw/img-11.jpeg',
     alt: 'Kristal şamdanlar ve Napolyon sandalyeler ile gala yemeği',
     title: 'Lüks Balo Gala Yemeği',
-    place: 'Kayseri',
+    place: 'Nevşehir',
     category: 'Düğün',
   },
   {
@@ -69,27 +69,28 @@ export function Portfolio() {
   return (
     <section
       id="portfolyo"
-      className="bg-secondary/60 border-border/60 border-y px-5 py-24 sm:px-8 sm:py-32"
+      className="bg-secondary/40 border-border/70 border-y px-5 py-24 sm:px-8 sm:py-32"
     >
       <div className="mx-auto max-w-7xl">
         <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <p className="font-script text-olive text-2xl italic sm:text-[1.7rem]">
-              İlham Veren Anlar
-            </p>
-            <h2 className="mt-3 font-serif text-3xl leading-[1.2] text-balance sm:text-4xl md:text-[2.75rem]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-olive/10 px-4 py-1 text-xs text-olive uppercase tracking-widest font-medium mb-3">
+              <Sparkles className="size-3.5" />
+              <span>İmza Projelerimiz</span>
+            </div>
+            <h2 className="mt-1 font-serif text-3xl leading-[1.2] text-balance sm:text-4xl md:text-[2.75rem]">
               Gerçekleştirdiğimiz Seçkiler
             </h2>
           </div>
           <div className="flex flex-col items-start md:items-end gap-3">
             <p className="text-muted-foreground max-w-sm text-[0.92rem] leading-relaxed text-pretty md:text-right">
-              Nevşehir, Kapadokya, Kayseri, Aksaray, Niğde ve Kırşehir genelinde hayata geçirdiğimiz imza projeler.
+              Nevşehir, Kapadokya, Aksaray, Niğde ve Kırşehir genelinde hayata geçirdiğimiz lüks organizasyon anları.
             </p>
             <Link
-              href="/galeri"
+              href="/katalog"
               className="text-olive hover:underline text-xs tracking-widest uppercase font-semibold inline-flex items-center gap-2"
             >
-              <span>Tüm Kataloğu Gör (25 Fotoğraf)</span>
+              <span>Tüm Tasarım Kataloğunu İncele</span>
               <ArrowRight className="size-4" />
             </Link>
           </div>
@@ -102,7 +103,7 @@ export function Portfolio() {
                 onClick={() => setActiveLightboxIndex(i)}
                 className="cursor-pointer"
               >
-                <div className="arch-lg bg-muted relative aspect-4/5 overflow-hidden shadow-lg border border-border/40">
+                <div className="arch-lg bg-muted relative aspect-4/5 overflow-hidden shadow-lg border border-border/50">
                   <Image
                     src={w.image}
                     alt={w.alt}
@@ -112,11 +113,11 @@ export function Portfolio() {
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                   >
-                    <span className="bg-white/90 text-foreground px-5 py-2 rounded-full text-xs uppercase tracking-widest backdrop-blur-sm flex items-center gap-2 font-semibold">
+                    <span className="bg-white/95 text-foreground px-5 py-2.5 rounded-full text-xs uppercase tracking-widest backdrop-blur-sm flex items-center gap-2 font-semibold shadow-xl">
                       <Eye className="size-4" />
-                      <span>İncele</span>
+                      <span>Detaylı İncele</span>
                     </span>
                   </div>
                 </div>
@@ -127,8 +128,9 @@ export function Portfolio() {
                       {w.category}
                     </span>
                   </div>
-                  <span className="text-muted-foreground text-[0.62rem] tracking-[0.2em] uppercase font-medium">
-                    {w.place}
+                  <span className="text-muted-foreground text-[0.68rem] tracking-[0.16em] uppercase font-medium flex items-center gap-1">
+                    <MapPin className="size-3 text-olive" />
+                    <span>{w.place}</span>
                   </span>
                 </figcaption>
               </figure>
@@ -136,12 +138,13 @@ export function Portfolio() {
           ))}
         </ul>
 
-        <Reveal className="mt-16 text-center lg:mt-12">
+        {/* Big CTA Banner linking to Catalog */}
+        <Reveal className="mt-16 text-center">
           <Link
-            href="/galeri"
-            className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-3 rounded-full px-10 py-4 text-xs tracking-[0.24em] uppercase transition-colors duration-300 shadow-md font-semibold"
+            href="/katalog"
+            className="bg-olive text-olive-foreground hover:bg-olive/90 inline-flex items-center gap-3 rounded-full px-10 py-4 text-xs tracking-[0.22em] uppercase transition-all duration-300 shadow-lg font-semibold hover:scale-[1.02]"
           >
-            <span>Filtrelenebilir Kataloğa Git</span>
+            <span>Filtrelenebilir Tasarım Kataloğumuzu Keşfedin (25+ Görsel)</span>
             <ArrowRight className="size-4" />
           </Link>
         </Reveal>

@@ -146,11 +146,11 @@ export default async function ServiceDetailPage({
                     <span>WhatsApp ile Teklif Al</span>
                   </a>
                   <a
-                    href="/#hesaplayici"
+                    href="/#hizli-teklif"
                     className="border border-olive text-olive hover:bg-olive/10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-xs tracking-[0.18em] uppercase font-semibold transition-colors"
                   >
-                    <Sliders className="size-4" />
-                    <span>Paket Planlayıcı</span>
+                    <Sparkles className="size-4" />
+                    <span>Özel Teklif Al</span>
                   </a>
                 </div>
               </Reveal>

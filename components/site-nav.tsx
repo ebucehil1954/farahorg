@@ -3,14 +3,14 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Sparkles, ArrowRight, Phone, MessageCircle, MapPin } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SERVICE_CATEGORIES } from '@/lib/services-data'
+import { BrandLogo } from '@/components/brand-logo'
 
 const navLinks = [
   { href: '/hizmetler', label: 'Hizmetler', hasDropdown: true },
-  { href: '/galeri', label: 'Galeri' },
-  { href: '/#hesaplayici', label: 'Paket Planlayıcı' },
+  { href: '/katalog', label: 'Tasarım Kataloğu' },
   { href: '/#portfolyo', label: 'Portfolyo' },
   { href: '/#hakkimizda', label: 'Hakkımızda' },
   { href: '/#iletisim', label: 'İletişim' },
@@ -42,9 +42,16 @@ export function SiteNav() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
     return () => {
       document.body.style.overflow = ''
+      document.body.style.touchAction = ''
     }
   }, [open])
 
@@ -55,215 +62,254 @@ export function SiteNav() {
   }, [pathname])
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-500',
-        scrolled || !isHomePage
-          ? 'bg-background/90 border-border/70 border-b py-3 backdrop-blur-md shadow-sm'
-          : 'py-5',
-      )}
-    >
-      <nav
-        aria-label="Ana menü"
-        className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8"
+    <>
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-40 transition-all duration-500',
+          scrolled || !isHomePage
+            ? 'bg-background/95 border-border/80 border-b py-3.5 backdrop-blur-lg shadow-sm'
+            : 'py-5 bg-gradient-to-b from-black/70 via-black/30 to-transparent',
+        )}
       >
-        <Link
-          href="/"
-          className={cn(
-            'font-serif text-lg leading-none tracking-[0.28em] uppercase transition-colors sm:text-xl',
-            scrolled || !isHomePage ? 'text-foreground' : 'text-champagne',
-          )}
+        <nav
+          aria-label="Ana menü"
+          className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8"
         >
-          Farah
-          <span
-            className={cn(
-              'font-script mt-0.5 block text-[0.6rem] tracking-[0.42em] normal-case',
-              scrolled || !isHomePage
-                ? 'text-muted-foreground'
-                : 'text-champagne/70',
-            )}
-          >
-            organizasyon
-          </span>
-        </Link>
+          {/* CSS Luxury Brand Logo */}
+          <BrandLogo scrolled={scrolled} isHomePage={isHomePage} />
 
-        {/* Desktop Menu */}
-        <ul className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((l) => (
-            <li key={l.href} className="relative group">
-              {l.hasDropdown ? (
-                <div
-                  onMouseEnter={() => setDropdownOpen(true)}
-                  onMouseLeave={() => setDropdownOpen(false)}
-                  className="relative py-2"
-                >
-                  <Link
-                    href={l.href}
-                    className={cn(
-                      'inline-flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase transition-colors',
-                      scrolled || !isHomePage
-                        ? 'text-muted-foreground hover:text-foreground'
-                        : 'text-champagne/85 hover:text-champagne',
-                    )}
-                  >
-                    <span>{l.label}</span>
-                    <ChevronDown className="size-3 transition-transform group-hover:rotate-180" />
-                  </Link>
-
-                  {/* Dropdown Menu */}
+          {/* Desktop Navigation Links */}
+          <ul className="hidden items-center gap-7 xl:gap-9 lg:flex">
+            {navLinks.map((l) => (
+              <li key={l.href} className="relative group">
+                {l.hasDropdown ? (
                   <div
-                    className={cn(
-                      'absolute left-1/2 -translate-x-1/2 top-full pt-3 w-80 transition-all duration-300',
-                      dropdownOpen
-                        ? 'opacity-100 visible translate-y-0'
-                        : 'opacity-0 invisible -translate-y-2',
-                    )}
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                    className="relative py-2"
                   >
-                    <div className="bg-card border border-border/80 rounded-2xl p-3 shadow-xl backdrop-blur-md">
-                      <div className="text-[0.6rem] tracking-widest text-muted-foreground uppercase px-3 py-1.5 border-b border-border/50 mb-1 font-semibold">
-                        Hizmetlerimiz
-                      </div>
-                      <div className="space-y-0.5 max-h-[380px] overflow-y-auto">
-                        {SERVICE_CATEGORIES.map((cat) => (
+                    <Link
+                      href={l.href}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 text-[0.72rem] tracking-[0.2em] uppercase transition-colors font-medium',
+                        scrolled || !isHomePage
+                          ? 'text-muted-foreground hover:text-foreground'
+                          : 'text-champagne/90 hover:text-champagne',
+                      )}
+                    >
+                      <span>{l.label}</span>
+                      <ChevronDown
+                        className={cn(
+                          'size-3.5 transition-transform duration-200',
+                          dropdownOpen && 'rotate-180 text-olive',
+                        )}
+                      />
+                    </Link>
+
+                    {/* Dropdown Menu */}
+                    <div
+                      className={cn(
+                        'absolute left-1/2 -translate-x-1/2 top-full pt-3 w-88 transition-all duration-300',
+                        dropdownOpen
+                          ? 'opacity-100 visible translate-y-0'
+                          : 'opacity-0 invisible -translate-y-2 pointer-events-none',
+                      )}
+                    >
+                      <div className="bg-card/95 backdrop-blur-xl border border-border/90 rounded-3xl p-3.5 shadow-2xl">
+                        <div className="flex items-center justify-between px-3 py-2 border-b border-border/60 mb-1.5">
+                          <span className="text-[0.62rem] tracking-[0.22em] text-muted-foreground uppercase font-semibold">
+                            Hizmetlerimiz (Nevşehir & Kapadokya)
+                          </span>
+                          <Sparkles className="size-3 text-olive" />
+                        </div>
+                        <div className="space-y-1 max-h-[380px] overflow-y-auto pr-1">
+                          {SERVICE_CATEGORIES.map((cat) => (
+                            <Link
+                              key={cat.slug}
+                              href={`/hizmetler/${cat.slug}`}
+                              className="flex items-center justify-between px-3 py-2.5 text-xs rounded-2xl hover:bg-olive/10 hover:text-olive transition-colors group/item"
+                            >
+                              <span className="font-serif text-[0.84rem] text-foreground/90 group-hover/item:text-olive font-medium">
+                                {cat.title}
+                              </span>
+                              <span className="font-script text-xs italic text-muted-foreground group-hover/item:text-olive/80">
+                                {cat.script}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-2 pt-2.5 border-t border-border/60 text-center">
                           <Link
-                            key={cat.slug}
-                            href={`/hizmetler/${cat.slug}`}
-                            className="flex items-center justify-between px-3 py-2 text-xs rounded-xl hover:bg-olive/10 hover:text-olive transition-colors group/item"
+                            href="/hizmetler"
+                            className="text-[0.68rem] tracking-widest uppercase text-olive hover:underline inline-flex items-center gap-1.5 py-1 font-semibold"
                           >
-                            <span className="font-serif text-[0.82rem] text-foreground/90 group-hover/item:text-olive font-medium">
-                              {cat.title}
-                            </span>
-                            <span className="font-script text-xs italic text-muted-foreground">
-                              {cat.script}
-                            </span>
+                            <span>Tüm Hizmet Paketlerini İncele</span>
+                            <ArrowRight className="size-3" />
                           </Link>
-                        ))}
-                      </div>
-                      <div className="mt-2 pt-2 border-t border-border/50 text-center">
-                        <Link
-                          href="/hizmetler"
-                          className="text-[0.65rem] tracking-widest uppercase text-olive hover:underline block py-1 font-semibold"
-                        >
-                          Tüm Hizmetleri İncele →
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <Link
-                  href={l.href}
-                  className={cn(
-                    'group relative text-[0.7rem] tracking-[0.2em] uppercase transition-colors py-2 inline-block',
-                    scrolled || !isHomePage
-                      ? 'text-muted-foreground hover:text-foreground'
-                      : 'text-champagne/85 hover:text-champagne',
-                  )}
-                >
-                  {l.label}
-                  <span
+                ) : (
+                  <Link
+                    href={l.href}
                     className={cn(
-                      'absolute bottom-0 left-0 h-px w-0 transition-all duration-300 group-hover:w-full',
-                      scrolled || !isHomePage ? 'bg-foreground' : 'bg-champagne',
+                      'group relative text-[0.72rem] tracking-[0.2em] uppercase transition-colors py-2 inline-block font-medium',
+                      scrolled || !isHomePage
+                        ? 'text-muted-foreground hover:text-foreground'
+                        : 'text-champagne/90 hover:text-champagne',
                     )}
-                  />
-                </Link>
+                  >
+                    {l.label}
+                    <span
+                      className={cn(
+                        'absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full rounded-full',
+                        scrolled || !isHomePage ? 'bg-olive' : 'bg-champagne',
+                      )}
+                    />
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop Right CTA Button */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              href="/#hizli-teklif"
+              className={cn(
+                'rounded-full px-7 py-2.5 text-[0.7rem] tracking-[0.22em] uppercase font-semibold transition-all duration-300 shadow-sm inline-flex items-center gap-2 hover:scale-[1.02]',
+                scrolled || !isHomePage
+                  ? 'bg-olive text-olive-foreground hover:bg-olive/90'
+                  : 'bg-champagne text-stone-900 hover:bg-champagne/90 shadow-lg',
               )}
-            </li>
-          ))}
-        </ul>
+            >
+              <Sparkles className="size-3.5" />
+              <span>Teklif Al</span>
+            </Link>
+          </div>
 
-        <Link
-          href="/#hizli-teklif"
-          className={cn(
-            'hidden rounded-full border px-6 py-2.5 text-[0.68rem] tracking-[0.2em] uppercase transition-all duration-300 lg:inline-block font-semibold',
-            scrolled || !isHomePage
-              ? 'bg-olive text-olive-foreground border-olive hover:bg-olive/90'
-              : 'border-champagne/50 text-champagne hover:bg-champagne hover:text-foreground',
-          )}
-        >
-          Teklif Al
-        </Link>
-
-        {/* Mobile menu trigger */}
-        <button
-          type="button"
-          onClick={() => setOpen((prev) => !prev)}
-          aria-expanded={open}
-          aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
-          className={cn(
-            'relative z-50 p-2 lg:hidden transition-colors',
-            scrolled || !isHomePage
-              ? 'text-foreground'
-              : 'text-champagne hover:text-champagne/80',
-          )}
-        >
-          {open ? (
-            <X className="size-6 text-foreground" />
-          ) : (
-            <Menu className="size-6" />
-          )}
-        </button>
-      </nav>
-
-      {/* Mobile drawer */}
-      <div
-        className={cn(
-          'bg-background fixed inset-0 z-40 flex flex-col items-center justify-start gap-5 px-6 transition-all duration-400 lg:hidden overflow-y-auto pt-24 pb-12',
-          open
-            ? 'visible opacity-100'
-            : 'pointer-events-none invisible opacity-0',
-        )}
-      >
-        <Link
-          href="/"
-          onClick={() => setOpen(false)}
-          className="font-serif text-2xl tracking-widest uppercase mb-2"
-        >
-          Farah <span className="font-script text-sm italic">organizasyon</span>
-        </Link>
-
-        {navLinks.map((l, i) => (
-          <Link
-            key={l.href}
-            href={l.href}
-            onClick={() => setOpen(false)}
-            style={{ transitionDelay: open ? `${i * 40 + 60}ms` : '0ms' }}
+          {/* Mobile Menu Trigger Button */}
+          <button
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            aria-expanded={open}
+            aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
             className={cn(
-              'font-serif text-xl transition-all duration-500 text-center',
-              open ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
+              'relative z-50 p-2.5 rounded-full lg:hidden transition-colors border shadow-sm',
+              scrolled || !isHomePage
+                ? 'text-foreground bg-card border-border/80 hover:bg-muted'
+                : 'text-champagne bg-black/40 border-champagne/30 backdrop-blur-md hover:bg-black/60',
             )}
           >
-            {l.label}
-          </Link>
-        ))}
+            {open ? (
+              <X className="size-5.5 text-foreground" />
+            ) : (
+              <Menu className="size-5.5" />
+            )}
+          </button>
+        </nav>
+      </header>
 
-        <div className="w-full max-w-sm border-t border-border/80 my-2 pt-4">
-          <p className="text-[0.62rem] tracking-widest text-muted-foreground uppercase text-center mb-3 font-semibold">
-            Hizmet Kategorilerimiz
-          </p>
-          <div className="grid grid-cols-2 gap-2 text-center">
-            {SERVICE_CATEGORIES.map((cat) => (
+      {/* Full-Screen Mobile Drawer */}
+      <div
+        className={cn(
+          'fixed inset-0 z-50 flex flex-col bg-background/98 backdrop-blur-2xl transition-all duration-400 lg:hidden overflow-hidden',
+          open
+            ? 'opacity-100 visible pointer-events-auto'
+            : 'opacity-0 invisible pointer-events-none',
+        )}
+      >
+        {/* Top bar inside mobile drawer */}
+        <div className="flex items-center justify-between px-6 py-4.5 border-b border-border/70">
+          <BrandLogo scrolled={true} isHomePage={false} onClick={() => setOpen(false)} />
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Menüyü kapat"
+            className="p-2.5 rounded-full bg-muted text-foreground hover:bg-muted/80 transition-colors"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        {/* Mobile Navigation Scrollable Content */}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+          {/* Main Links */}
+          <div className="space-y-1">
+            {navLinks.map((l) => (
               <Link
-                key={cat.slug}
-                href={`/hizmetler/${cat.slug}`}
+                key={l.href}
+                href={l.href}
                 onClick={() => setOpen(false)}
-                className="bg-card border border-border/60 rounded-xl p-2.5 text-[0.72rem] font-serif hover:border-olive transition-colors leading-tight"
+                className="flex items-center justify-between py-3.5 px-3 rounded-2xl font-serif text-lg text-foreground hover:bg-olive/10 hover:text-olive transition-colors"
               >
-                {cat.title}
+                <span>{l.label}</span>
+                <ArrowRight className="size-4 text-muted-foreground opacity-60" />
               </Link>
             ))}
           </div>
-        </div>
 
-        <Link
-          href="/#hizli-teklif"
-          onClick={() => setOpen(false)}
-          className="bg-olive text-olive-foreground mt-2 rounded-full px-8 py-3.5 text-[0.7rem] tracking-[0.2em] uppercase font-semibold"
-        >
-          Hızlı Teklif Al
-        </Link>
+          {/* Hizmetlerimiz Quick Grid */}
+          <div className="border-t border-border/80 pt-5">
+            <div className="flex items-center justify-between mb-3 px-1">
+              <p className="text-[0.65rem] tracking-[0.2em] text-muted-foreground uppercase font-semibold">
+                Hizmet Kategorilerimiz
+              </p>
+              <span className="text-[0.62rem] text-olive font-medium">8 Paket Seçeneği</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {SERVICE_CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/hizmetler/${cat.slug}`}
+                  onClick={() => setOpen(false)}
+                  className="bg-card border border-border/70 rounded-2xl p-3 text-left hover:border-olive hover:bg-olive/5 transition-all flex flex-col justify-between"
+                >
+                  <span className="font-serif text-xs font-semibold text-foreground/90 leading-tight">
+                    {cat.title}
+                  </span>
+                  <span className="font-script text-[0.72rem] text-muted-foreground italic mt-1">
+                    {cat.script}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Contact and CTA Buttons */}
+          <div className="border-t border-border/80 pt-5 space-y-3 pb-6">
+            <Link
+              href="/#hizli-teklif"
+              onClick={() => setOpen(false)}
+              className="w-full bg-olive text-olive-foreground hover:bg-olive/90 rounded-full py-4 px-6 text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center gap-2 shadow-md transition-all"
+            >
+              <Sparkles className="size-4" />
+              <span>Hızlı Özel Teklif Al</span>
+            </Link>
+
+            <a
+              href="https://wa.me/905300000000?text=Merhaba%20Farah%20Organizasyon%2C%20Nev%C5%9Fehir%20Kapadokya%20organizasyonlar%C4%B1%20i%C3%A7in%20bilgi%20ve%20teklif%20almak%20istiyorum."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-full py-3.5 px-6 text-xs uppercase tracking-[0.18em] font-semibold flex items-center justify-center gap-2 shadow-sm transition-all"
+            >
+              <MessageCircle className="size-4 fill-current" />
+              <span>WhatsApp Danışma Hattı</span>
+            </a>
+
+            <div className="text-center pt-2">
+              <a
+                href="tel:+905300000000"
+                className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 font-medium"
+              >
+                <Phone className="size-3.5 text-olive" />
+                <span>+90 530 000 00 00 (Nevşehir / Kapadokya)</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </header>
+    </>
   )
 }
